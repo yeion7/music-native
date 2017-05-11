@@ -12,6 +12,10 @@ export default class App extends React.Component {
       await Font.loadAsync({
         'Roboto': require('native-base/Fonts/Roboto.ttf'),
         'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+        'Quicksand-Bold': require('./assets/fonts/Quicksand-Bold.ttf'),
+        'Quicksand-Light': require('./assets/fonts/Quicksand-Light.ttf'),
+        'Quicksand-Medium': require('./assets/fonts/Quicksand-Medium.ttf'),
+        'Quicksand-Regular': require('./assets/fonts/Quicksand-Regular.ttf'),
       });
 
       this.setState({ fontLoaded: true });
@@ -52,11 +56,12 @@ const Platzi = styled.Text`
   color: white;
   font-weight: bold;
   font-size: 25;
-  font-family: Roboto
+  font-family: Quicksand-Bold
 `
 
 const Music = styled.Text`
   color: #bfafd9;
   font-weight: bold;
   font-size: 25;
+  font-family: Quicksand-Bold
 `
