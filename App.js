@@ -6,7 +6,10 @@ export default class App extends React.Component {
   render() {
     return (
       <Container>
-        <Text>Platzi Music</Text>
+        <Title>
+          <Platzi>Platzi</Platzi>
+          <Music>Music</Music>
+        </Title>
       </Container>
     );
   }
@@ -14,7 +17,23 @@ export default class App extends React.Component {
 
 const Container = styled.View`
     flex: 1;
-    background-color: #fff;
     align-items: center;
     justify-content: center;
+    background: rgba(233, 131, 238, 0.5);
     `
+
+const Title = styled.View`
+  flex-direction: row;
+`
+
+const Platzi = styled.Text`
+  color: white;
+  font-weight: bold;
+  font-size: 25;
+`
+
+const Music = styled.Text`
+  color: #bfafd9;
+  font-weight: bold;
+  font-size: 25;
+`
