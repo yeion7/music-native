@@ -1,15 +1,37 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import styled from 'styled-components/native';
+import { Font } from 'expo'
 
 export default class App extends React.Component {
+  state = {
+    fontLoaded: false,
+  };
+
+  async componentDidMount() {
+      await Font.loadAsync({
+        'Roboto': require('native-base/Fonts/Roboto.ttf'),
+        'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+      });
+
+      this.setState({ fontLoaded: true });
+
+    }
+
+
   render() {
     return (
       <Container>
-        <Title>
-          <Platzi>Platzi</Platzi>
-          <Music>Music</Music>
-        </Title>
+        {
+          this.state.fontLoaded && (
+            <Title>
+              <Platzi>Platzi</Platzi>
+              <Music>Music</Music>
+            </Title>
+          )
+
+        }
+
       </Container>
     );
   }
@@ -19,7 +41,7 @@ const Container = styled.View`
     flex: 1;
     align-items: center;
     justify-content: center;
-    background: rgba(233, 131, 238, 0.5);
+    background: #BE90D4;
     `
 
 const Title = styled.View`
@@ -30,6 +52,7 @@ const Platzi = styled.Text`
   color: white;
   font-weight: bold;
   font-size: 25;
+  font-family: Roboto
 `
 
 const Music = styled.Text`
