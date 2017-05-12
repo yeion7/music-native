@@ -8,12 +8,13 @@ import {
 } from 'react-native';
 
 import Splash from './screens/Splash'
+import Main from './screens/Main'
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Splash />
+        <Main/>
       </View>
     );
   }
