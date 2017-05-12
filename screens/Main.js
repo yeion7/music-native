@@ -19,12 +19,11 @@ export default class Main extends Component {
   }
 
   state = {
-    songReady: false,
+    songsReady: false,
   };
 
   render() {
     return (
-      <View style={styles.container}>
       <Container>
           <Header searchBar rounded>
               <Item>
@@ -41,23 +40,13 @@ export default class Main extends Component {
           </Header>
           <Content>
             {
-              this.state.songReady ? (
+              this.state.songsReady ? (
                 <SongList />
-              ) : (
-                <PlaceHolder />
-              )
+              ) : <PlaceHolder />
             }
 
           </Content>
       </Container>
-      </View>
     );
   }
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

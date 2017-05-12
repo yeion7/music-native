@@ -38,7 +38,6 @@ class Splash extends React.Component {
               <View>
                 <Logo/>
                 <Spinner color='#9B59B6' />
-
               </View>
             ) : <Spinner color='#9B59B6' />
           }
