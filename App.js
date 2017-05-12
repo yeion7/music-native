@@ -7,21 +7,19 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import { StackNavigator } from 'react-navigation';
+
 import Splash from './screens/Splash'
 import Main from './screens/Main'
 
-export default class App extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Main/>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+const App = StackNavigator(
+  {
+  SplashScreen: {screen: Splash},
+  MainScreen: {screen: Main},
   },
-});
+  {
+    initialRouteName: 'SplashScreen',
+  },
+);
+
+export default App

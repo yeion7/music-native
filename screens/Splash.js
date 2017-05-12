@@ -1,12 +1,17 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import styled from 'styled-components/native';
 import { Font } from 'expo'
-import { Spinner } from 'native-base'
+import { Spinner, Button, Text } from 'native-base'
+import { nativate } from 'react-navigation'
 
 import Logo from '../components/Logo'
 
 class Splash extends React.Component {
+  static navigationOptions = {
+    header: null
+  }
+
   state = {
     fontLoaded: false,
   };
@@ -18,6 +23,9 @@ class Splash extends React.Component {
         'Quicksand-Medium': require('../assets/fonts/Quicksand-Medium.ttf'),
         'Quicksand-Regular': require('../assets/fonts/Quicksand-Regular.ttf'),
       });
+      const { navigate } = this.props.navigation;
+
+      setTimeout(navigate, 2000, 'MainScreen' )
 
       this.setState({ fontLoaded: true });
     }
@@ -30,6 +38,7 @@ class Splash extends React.Component {
               <View>
                 <Logo/>
                 <Spinner color='#9B59B6' />
+
               </View>
             ) : <Spinner color='#9B59B6' />
           }

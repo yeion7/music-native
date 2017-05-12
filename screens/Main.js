@@ -22,6 +22,10 @@ const artists = [
 ]
 
 export default class Main extends Component {
+  static navigationOptions = {
+    header: null
+  }
+  
   render() {
     return (
       <View style={styles.container}>
