@@ -4,28 +4,24 @@ import React, { Component } from 'react';
 import {
   View,
   StyleSheet,
-  TouchableOpacity
+  Text
 } from 'react-native';
 
 import { Container, Header, Item, Input, Icon, Button,
-List, ListItem, Thumbnail, Text, Body, Content, Right } from 'native-base';
+      List, ListItem, Thumbnail, Body, Content, Right } from 'native-base';
 
-const artists = [
-  {name: 'Li Lan La', album: 'Li Lan La', duration: '3:42', image: '../assets/images/download.jpeg'},
-  {name: 'Li Lan La', album: 'Li Lan La', duration: '3:42', image: '../assets/images/download.jpeg'},
-  {name: 'Li Lan La', album: 'Li Lan La', duration: '3:42', image: '../assets/images/download.jpeg'},
-  {name: 'Li Lan La', album: 'Li Lan La', duration: '3:42', image: '../assets/images/download.jpeg'},
-  {name: 'Li Lan La', album: 'Li Lan La', duration: '3:42', image: '../assets/images/download.jpeg'},
-  {name: 'Li Lan La', album: 'Li Lan La', duration: '3:42', image: '../assets/images/download.jpeg'},
-  {name: 'Li Lan La', album: 'Li Lan La', duration: '3:42', image: '../assets/images/download.jpeg'},
-  {name: 'Li Lan La', album: 'Li Lan La', duration: '3:42', image: '../assets/images/download.jpeg'},
-]
+import PlaceHolder from '../components/PlaceHolder'
+import SongList from '../components/SongList'
 
 export default class Main extends Component {
   static navigationOptions = {
     header: null
   }
-  
+
+  state = {
+    songReady: false,
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -44,32 +40,21 @@ export default class Main extends Component {
               </Button>
           </Header>
           <Content>
-            <List dataArray={artists}
-              renderRow={({name, album, duration, image}) =>
-                <ListItem onPress={()=> console.warn('play')}>
-                    <Thumbnail
-                        square
-                        size={80} source={require('../assets/images/download.jpeg')}
-                    />
-                    <Body>
-                        <Text>{name}</Text>
-                        <Text note>{album}</Text>
-                        <Text note>{duration}</Text>
+            {
+              this.state.songReady ? (
+                <SongList />
+              ) : (
+                <PlaceHolder />
+              )
+            }
 
-                    </Body>
-                    <Right>
-                        <Icon name="md-play" />
-                    </Right>
-                </ListItem>
-              }>
-            </List>
-
-        </Content>
+          </Content>
       </Container>
       </View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
