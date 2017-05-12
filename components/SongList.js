@@ -17,6 +17,8 @@ import {
   Text
 } from 'native-base';
 
+import { formattedTime } from '../lib/time'
+
 
 const SongList = ({ tracks }) => (
   <View style={styles.container}>
@@ -27,12 +29,11 @@ const SongList = ({ tracks }) => (
                 square
                 size={80}
                 source={{ uri: album.images[2].url }}
-
             />
             <Body>
                 <Text>{name}</Text>
                 <Text note>{artists.name}</Text>
-                <Text note>{duration_ms}</Text>
+                <Text note>{formattedTime(duration_ms)}</Text>
 
             </Body>
             <Right>

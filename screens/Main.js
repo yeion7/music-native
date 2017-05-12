@@ -22,7 +22,8 @@ export default class Main extends Component {
 
   state = {
     songsReady: false,
-    tracks: []
+    tracks: [],
+    text: '',
   };
 
   fetchTracks(q) {
@@ -31,16 +32,8 @@ export default class Main extends Component {
       .catch(error => console.log(error))
   }
 
-  componentDidMount() {
-    this.fetchTracks('la la ')
-  }
-
-  componentWillMount() {
-    console.log('Estado', this.state)
-  }
-
   render() {
-    const { tracks } = this.state
+    const { tracks, text } = this.state
     return (
       <Container>
           <Header searchBar rounded>
@@ -49,10 +42,12 @@ export default class Main extends Component {
                   <Input
                     autoCorrect={false}
                     placeholder="Search"
+                    value={ this.state.text }
+                    onChangeText={(text) => this.setState({text})}
                   />
                   <Icon name="ios-musical-notes" />
               </Item>
-              <Button transparent>
+              <Button transparent onPress={() => this.fetchTracks(text) }>
                   <Text>Search</Text>
               </Button>
           </Header>
