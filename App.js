@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import styled from 'styled-components/native';
 import { Font } from 'expo'
+import { Spinner } from 'native-base'
 
 export default class App extends React.Component {
   state = {
@@ -10,8 +11,6 @@ export default class App extends React.Component {
 
   async componentDidMount() {
       await Font.loadAsync({
-        'Roboto': require('native-base/Fonts/Roboto.ttf'),
-        'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
         'Quicksand-Bold': require('./assets/fonts/Quicksand-Bold.ttf'),
         'Quicksand-Light': require('./assets/fonts/Quicksand-Light.ttf'),
         'Quicksand-Medium': require('./assets/fonts/Quicksand-Medium.ttf'),
@@ -25,30 +24,25 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Container>
-        {
-          this.state.fontLoaded && (
-            <Title>
-              <Platzi>Platzi</Platzi>
-              <Music>Music</Music>
-            </Title>
-          )
-
-        }
-
+      <Container >
+          {
+            this.state.fontLoaded ? (
+              <View>
+                <Wrapper>
+                  <Platzi>Platzi</Platzi>
+                  <Music>Music</Music>
+                </Wrapper>
+                <Message>Tu música sin límites</Message>
+              </View>
+            ) : <Spinner color='#9B59B6' />
+          }
       </Container>
+
     );
   }
 }
 
-const Container = styled.View`
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    background: #BE90D4;
-    `
-
-const Title = styled.View`
+const Wrapper = styled.View`
   flex-direction: row;
 `
 
@@ -60,8 +54,22 @@ const Platzi = styled.Text`
 `
 
 const Music = styled.Text`
-  color: #bfafd9;
+  color: #8E44AD;
   font-weight: bold;
   font-size: 25;
   font-family: Quicksand-Bold
+`
+
+const Message = styled.Text`
+  color: white;
+  font-family: Quicksand-Light
+
+`
+
+const Container = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background: #BE90D4;
+
 `
