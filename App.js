@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { Font } from 'expo'
-import { Spinner } from 'native-base'
+import { Spinner, InputGroup, Input, Icon, Button } from 'native-base'
 
 export default class App extends React.Component {
   state = {
@@ -28,11 +28,24 @@ export default class App extends React.Component {
           {
             this.state.fontLoaded ? (
               <View>
-                <Wrapper>
-                  <Platzi>Platzi</Platzi>
-                  <Music>Music</Music>
-                </Wrapper>
-                <Message>Tu música sin límites</Message>
+                <View>
+                  <Wrapper>
+                    <Platzi>Platzi</Platzi>
+                    <Music>Music</Music>
+                  </Wrapper>
+                  <Message>Tu música sin límites</Message>
+                </View>
+                <Searcher>
+                    <InputGroup iconRight>
+                      <Input
+                        placeholder='Busca tu canción favorita'
+                        style={{fontSize: 12, flex: 1}}
+                      />
+                      <Button transparent dark>
+                        <Icon name='search' />
+                      </Button>
+                    </InputGroup>
+                </Searcher>
               </View>
             ) : <Spinner color='#9B59B6' />
           }
@@ -42,27 +55,36 @@ export default class App extends React.Component {
   }
 }
 
+const { width } = Dimensions.get('window');
+
 const Wrapper = styled.View`
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`
+const Searcher = styled.View`
+  width: ${width - (width * 0.2)};
+  margin: 30 60;
 `
 
 const Platzi = styled.Text`
   color: white;
   font-weight: bold;
-  font-size: 25;
+  font-size: 28;
   font-family: Quicksand-Bold
 `
 
 const Music = styled.Text`
   color: #8E44AD;
   font-weight: bold;
-  font-size: 25;
+  font-size: 28;
   font-family: Quicksand-Bold
 `
 
 const Message = styled.Text`
   color: white;
-  font-family: Quicksand-Light
+  font-family: Quicksand-Light;
+  align-self: center;
 
 `
 
