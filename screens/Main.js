@@ -45,7 +45,6 @@ export default class Main extends Component {
                     value={ this.state.text }
                     onChangeText={(text) => this.setState({text})}
                   />
-                  <Icon name="ios-musical-notes" />
               </Item>
               <Button transparent onPress={() => this.fetchTracks(text) }>
                   <Text>Search</Text>
