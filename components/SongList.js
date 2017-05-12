@@ -18,30 +18,21 @@ import {
 } from 'native-base';
 
 
-const artists = [
-  {name: 'Li Lan La', album: 'Li Lan La', duration: '3:42', image: '../assets/images/download.jpeg'},
-  {name: 'Li Lan La', album: 'Li Lan La', duration: '3:42', image: '../assets/images/download.jpeg'},
-  {name: 'Li Lan La', album: 'Li Lan La', duration: '3:42', image: '../assets/images/download.jpeg'},
-  {name: 'Li Lan La', album: 'Li Lan La', duration: '3:42', image: '../assets/images/download.jpeg'},
-  {name: 'Li Lan La', album: 'Li Lan La', duration: '3:42', image: '../assets/images/download.jpeg'},
-  {name: 'Li Lan La', album: 'Li Lan La', duration: '3:42', image: '../assets/images/download.jpeg'},
-  {name: 'Li Lan La', album: 'Li Lan La', duration: '3:42', image: '../assets/images/download.jpeg'},
-  {name: 'Li Lan La', album: 'Li Lan La', duration: '3:42', image: '../assets/images/download.jpeg'},
-]
-
-const SongList = () => (
+const SongList = ({ tracks }) => (
   <View style={styles.container}>
-    <List dataArray={artists}
-      renderRow={({name, album, duration, image}) =>
-        <ListItem onPress={()=> console.warn('play')}>
+    <List dataArray={ tracks }
+      renderRow={({id, name, duration_ms, artists, album }) =>
+        <ListItem key={ id } onPress={()=> console.warn('play')}>
             <Thumbnail
                 square
-                size={80} source={require('../assets/images/download.jpeg')}
+                size={80}
+                source={{ uri: album.images[2].url }}
+
             />
             <Body>
                 <Text>{name}</Text>
-                <Text note>{album}</Text>
-                <Text note>{duration}</Text>
+                <Text note>{artists.name}</Text>
+                <Text note>{duration_ms}</Text>
 
             </Body>
             <Right>

@@ -13,6 +13,8 @@ import { Container, Header, Item, Input, Icon, Button,
 import PlaceHolder from '../components/PlaceHolder'
 import SongList from '../components/SongList'
 
+import getTracks from '../lib/api'
+
 export default class Main extends Component {
   static navigationOptions = {
     header: null
@@ -20,9 +22,25 @@ export default class Main extends Component {
 
   state = {
     songsReady: false,
+    tracks: []
   };
 
+  fetchTracks(q) {
+    getTracks(q)
+      .then(data => this.setState({ tracks: data, songsReady: true }))
+      .catch(error => console.log(error))
+  }
+
+  componentDidMount() {
+    this.fetchTracks('la la ')
+  }
+
+  componentWillMount() {
+    console.log('Estado', this.state)
+  }
+
   render() {
+    const { tracks } = this.state
     return (
       <Container>
           <Header searchBar rounded>
@@ -41,7 +59,7 @@ export default class Main extends Component {
           <Content>
             {
               this.state.songsReady ? (
-                <SongList />
+                <SongList tracks={ tracks }/>
               ) : <PlaceHolder />
             }
 
