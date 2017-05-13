@@ -3,20 +3,12 @@
 import React, { Component } from "react";
 import { View, StyleSheet } from "react-native";
 import { Toast } from "native-base";
-
 import { List } from "native-base";
-
 import Expo, { Audio } from "expo";
-
+import styled from "styled-components/native";
 import SongItem from "./SongItem";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-});
-
-export default class SongList extends Component {
+export default class ResultsList extends Component {
   async componentDidMount() {
     await Audio.setIsEnabledAsync(true);
   }
@@ -47,14 +39,22 @@ export default class SongList extends Component {
   render() {
     const { tracks } = this.props;
     return (
-      <View style={styles.container}>
+      <View>
+        <Separator>Canciones</Separator>
         <List
           dataArray={tracks}
           renderRow={info => (
             <SongItem {...info} handlePress={this.handlePress} />
           )}
         />
+        <Separator>Álbumes</Separator>
       </View>
     );
   }
 }
+
+const Separator = styled.Text`
+  background-color: #f0eff5;
+  padding: 10;
+  font-weight: 600;
+`;

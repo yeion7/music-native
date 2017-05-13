@@ -3,23 +3,11 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text } from "react-native";
 
-import {
-  Container,
-  Header,
-  Item,
-  Input,
-  Icon,
-  Button,
-  List,
-  ListItem,
-  Thumbnail,
-  Body,
-  Content,
-  Right
-} from "native-base";
+import { Container, Content } from "native-base";
 
 import PlaceHolder from "../components/PlaceHolder";
-import SongList from "../components/SongList";
+import ResultsList from "../components/ResultsList";
+import Searcher from "../components/Searcher";
 
 import { getTracks } from "../lib/api";
 
@@ -49,20 +37,10 @@ export default class Main extends Component {
     const { tracks, text } = this.state;
     return (
       <Container>
-        <Header searchBar rounded>
-          <Item>
-            <Icon name="ios-search" />
-            <Input
-              autoCorrect={false}
-              placeholder="Search"
-              value={this.state.text}
-              onChangeText={this.handleChange}
-            />
-          </Item>
-        </Header>
+        <Searcher handleChange={this.handleChange} state={this.state} />
         <Content>
           {this.state.songsReady
-            ? <SongList tracks={tracks} />
+            ? <ResultsList tracks={tracks} />
             : <PlaceHolder />}
 
         </Content>
