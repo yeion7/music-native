@@ -8,19 +8,12 @@ import Expo, { Audio } from "expo";
 import styled from "styled-components/native";
 import SongItem from "./SongItem";
 import AlbumItem from "./AlbumItem";
+import { error } from "../lib/error";
 
 export default class ResultsList extends Component {
   async componentDidMount() {
     await Audio.setIsEnabledAsync(true);
   }
-
-  showMessage = msg => {
-    Toast.show({
-      text: msg,
-      position: "center",
-      duration: 1000
-    });
-  };
 
   async handlePress(song) {
     const SOUND_URL = { source: song.preview_url };
@@ -30,10 +23,10 @@ export default class ResultsList extends Component {
         await sound.loadAsync();
         await sound.playAsync();
       } catch (e) {
-        this.showMessage("Error al reproduccir");
+        error("Error al reproduccir");
       }
     } else {
-      this.showMessage("Canción sin URL");
+      error("Canción sin URL");
     }
   }
 

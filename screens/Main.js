@@ -1,13 +1,14 @@
 /* @flow */
 
 import React, { Component } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View } from "react-native";
 
 import { Container, Content } from "native-base";
 
 import PlaceHolder from "../components/PlaceHolder";
 import ResultsList from "../components/ResultsList";
 import Searcher from "../components/Searcher";
+import Player from "../components/Player";
 
 import { getTracks, getAlbum } from "../lib/api";
 
@@ -20,7 +21,15 @@ export default class Main extends Component {
     fetchReady: false,
     tracks: [],
     albums: [],
-    text: ""
+    text: "",
+    index: 0,
+    playbackInstanceName: "",
+    playbackInstancePosition: null,
+    playbackInstanceDuration: null,
+    shouldPlay: false,
+    isPlaying: false,
+    isBuffering: false,
+    isLoading: true
   };
 
   fetchTracks(q) {
@@ -51,8 +60,9 @@ export default class Main extends Component {
           {this.state.fetchReady
             ? <ResultsList tracks={tracks} albums={albums} />
             : <PlaceHolder />}
-
         </Content>
+        <Player />
+
       </Container>
     );
   }

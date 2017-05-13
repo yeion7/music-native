@@ -25,7 +25,7 @@ class Splash extends React.Component {
     });
     const { navigate } = this.props.navigation;
 
-    setTimeout(navigate, 1000, "MainScreen");
+    setTimeout(navigate, 1, "MainScreen");
 
     this.setState({ fontLoaded: true });
   }
