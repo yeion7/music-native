@@ -42,11 +42,9 @@ export default class Main extends Component {
 
   handleChange = text => {
     this.setState({ text });
-  };
-
-  handlePress = text => {
     this.fetchTracks(text);
   };
+
   render() {
     const { tracks, text } = this.state;
     return (
@@ -61,9 +59,6 @@ export default class Main extends Component {
               onChangeText={this.handleChange}
             />
           </Item>
-          <Button transparent onPress={this.handlePress}>
-            <Text>Search</Text>
-          </Button>
         </Header>
         <Content>
           {this.state.songsReady

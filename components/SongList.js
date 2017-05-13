@@ -25,12 +25,21 @@ const styles = StyleSheet.create({
 });
 
 export default class SongList extends Component {
+  async componentDidMount() {
+    await Audio.setIsEnabledAsync(true);
+  }
   async handlePress(song) {
     const SOUND_URL = { source: song.preview_url };
+    console.log(SOUND_URL);
     const sound = new Audio.Sound(SOUND_URL);
-    await sound.loadAsync();
-    sound.getStatusAsync().then(status => console.log(status));
-    await sound.playAsync();
+    try {
+      await sound.loadAsync();
+      await sound.playAsync();
+      const status = await sound.getStatusAsync();
+      console.log("estatus", status);
+    } catch (e) {
+      console.log("occurrio un error");
+    }
   }
   render() {
     const { tracks } = this.props;
