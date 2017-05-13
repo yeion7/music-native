@@ -9,7 +9,7 @@ import PlaceHolder from "../components/PlaceHolder";
 import ResultsList from "../components/ResultsList";
 import Searcher from "../components/Searcher";
 
-import { getTracks } from "../lib/api";
+import { getTracks, getAlbum } from "../lib/api";
 
 export default class Main extends Component {
   static navigationOptions = {
@@ -17,30 +17,39 @@ export default class Main extends Component {
   };
 
   state = {
-    songsReady: false,
+    fetchReady: false,
     tracks: [],
+    albums: [],
     text: ""
   };
 
   fetchTracks(q) {
     getTracks(q)
-      .then(data => this.setState({ tracks: data, songsReady: true }))
+      .then(data => this.setState({ tracks: data }))
+      .catch(error => console.log(error));
+  }
+
+  fetchAlbum(q) {
+    getAlbum(q)
+      .then(data => this.setState({ albums: data }))
       .catch(error => console.log(error));
   }
 
   handleChange = text => {
     this.setState({ text });
-    this.fetchTracks(text);
+    Promise.all([this.fetchTracks(text), this.fetchAlbum(text)]).then(() =>
+      this.setState({ fetchReady: true })
+    );
   };
 
   render() {
-    const { tracks, text } = this.state;
+    const { tracks, text, albums } = this.state;
     return (
       <Container>
         <Searcher handleChange={this.handleChange} state={this.state} />
         <Content>
-          {this.state.songsReady
-            ? <ResultsList tracks={tracks} />
+          {this.state.fetchReady
+            ? <ResultsList tracks={tracks} albums={albums} />
             : <PlaceHolder />}
 
         </Content>

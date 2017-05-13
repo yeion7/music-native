@@ -7,6 +7,7 @@ import { List } from "native-base";
 import Expo, { Audio } from "expo";
 import styled from "styled-components/native";
 import SongItem from "./SongItem";
+import AlbumItem from "./AlbumItem";
 
 export default class ResultsList extends Component {
   async componentDidMount() {
@@ -37,17 +38,18 @@ export default class ResultsList extends Component {
   }
 
   render() {
-    const { tracks } = this.props;
+    const { tracks, albums } = this.props;
     return (
       <View>
         <Separator>Canciones</Separator>
+        <List dataArray={tracks} renderRow={info => <SongItem {...info} />} />
+        <Separator>Álbumes</Separator>
         <List
-          dataArray={tracks}
+          dataArray={albums}
           renderRow={info => (
-            <SongItem {...info} handlePress={this.handlePress} />
+            <AlbumItem {...info} handlePress={this.handlePress} />
           )}
         />
-        <Separator>Álbumes</Separator>
       </View>
     );
   }
