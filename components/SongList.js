@@ -2,21 +2,13 @@
 
 import React, { Component } from "react";
 import { View, StyleSheet } from "react-native";
+import { Toast } from "native-base";
 
-import {
-  Icon,
-  List,
-  ListItem,
-  Thumbnail,
-  Body,
-  Content,
-  Right,
-  Text
-} from "native-base";
+import { List } from "native-base";
 
 import Expo, { Audio } from "expo";
 
-import { formattedTime } from "../lib/time";
+import SongItem from "./SongItem";
 
 const styles = StyleSheet.create({
   container: {
@@ -28,53 +20,35 @@ export default class SongList extends Component {
   async componentDidMount() {
     await Audio.setIsEnabledAsync(true);
   }
+
+  showMessage = msg => {
+    Toast.show({
+      text: msg,
+      position: "center",
+      duration: 1000
+    });
+  };
+
   async handlePress(song) {
     const SOUND_URL = { source: song.preview_url };
-    console.log(SOUND_URL);
-    const sound = new Audio.Sound(SOUND_URL);
-    try {
-      await sound.loadAsync();
-      await sound.playAsync();
-      const status = await sound.getStatusAsync();
-      console.log("estatus", status);
-    } catch (e) {
-      console.log("occurrio un error");
+    if (SOUND_URL.source !== null) {
+      const sound = new Audio.Sound(SOUND_URL);
+      try {
+        await sound.loadAsync();
+        await sound.playAsync();
+      } catch (e) {
+        this.showMessage("Error al reproduccir");
+      }
+    } else {
+      this.showMessage("Canción sin URL");
     }
   }
+
   render() {
     const { tracks } = this.props;
     return (
       <View style={styles.container}>
-        <List
-          dataArray={tracks}
-          renderRow={({
-            id,
-            name,
-            duration_ms,
-            artists,
-            album,
-            preview_url
-          }) => (
-            <ListItem
-              key={id}
-              onPress={() => this.handlePress({ id, name, preview_url })}
-            >
-              <Thumbnail
-                square
-                size={80}
-                source={{ uri: album.images[2].url }}
-              />
-              <Body>
-                <Text>{name}</Text>
-                <Text note>{artists.name}</Text>
-                <Text note>{formattedTime(duration_ms)}</Text>
-              </Body>
-              <Right>
-                <Icon name="md-play" />
-              </Right>
-            </ListItem>
-          )}
-        />
+        <List dataArray={tracks} renderRow={info => <SongItem {...info} />} />
       </View>
     );
   }

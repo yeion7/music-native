@@ -21,7 +21,7 @@ import {
 import PlaceHolder from "../components/PlaceHolder";
 import SongList from "../components/SongList";
 
-import getTracks from "../lib/api";
+import { getTracks } from "../lib/api";
 
 export default class Main extends Component {
   static navigationOptions = {
