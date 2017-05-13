@@ -42,7 +42,12 @@ export default class ResultsList extends Component {
     return (
       <View>
         <Separator>Canciones</Separator>
-        <List dataArray={tracks} renderRow={info => <SongItem {...info} />} />
+        <List
+          dataArray={tracks}
+          renderRow={info => (
+            <SongItem {...info} handlePress={this.handlePress} />
+          )}
+        />
         <Separator>Álbumes</Separator>
         <List
           dataArray={albums}
