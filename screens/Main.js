@@ -11,8 +11,13 @@ import Searcher from "../components/Searcher";
 import Player from "../components/Player";
 
 import { getTracks, getAlbum } from "../lib/api";
+import Expo, { Audio } from "expo";
 
 export default class Main extends Component {
+  async componentDidMount() {
+    await Audio.setIsEnabledAsync(true);
+  }
+
   static navigationOptions = {
     header: null
   };
@@ -51,6 +56,22 @@ export default class Main extends Component {
     );
   };
 
+  async handlePress(song) {
+    console.log(song);
+    const SOUND_URL = { source: song.preview_url };
+    if (SOUND_URL.source !== null) {
+      const sound = new Audio.Sound(SOUND_URL);
+      try {
+        await sound.loadAsync();
+        await sound.playAsync();
+      } catch (e) {
+        error("Error al reproduccir");
+      }
+    } else {
+      error("Canción sin URL");
+    }
+  }
+
   render() {
     const { tracks, text, albums } = this.state;
     return (
@@ -58,11 +79,14 @@ export default class Main extends Component {
         <Searcher handleChange={this.handleChange} state={this.state} />
         <Content>
           {this.state.fetchReady
-            ? <ResultsList tracks={tracks} albums={albums} />
+            ? <ResultsList
+                tracks={tracks}
+                albums={albums}
+                handlePress={this.handlePress}
+              />
             : <PlaceHolder />}
         </Content>
         <Player />
-
       </Container>
     );
   }
