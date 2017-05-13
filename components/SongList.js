@@ -48,7 +48,12 @@ export default class SongList extends Component {
     const { tracks } = this.props;
     return (
       <View style={styles.container}>
-        <List dataArray={tracks} renderRow={info => <SongItem {...info} />} />
+        <List
+          dataArray={tracks}
+          renderRow={info => (
+            <SongItem {...info} handlePress={this.handlePress} />
+          )}
+        />
       </View>
     );
   }
