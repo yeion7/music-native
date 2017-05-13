@@ -1,63 +1,76 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { View, StyleSheet, Text } from "react-native";
+
 import {
-  View,
-  StyleSheet,
-  Text
-} from 'react-native';
+  Container,
+  Header,
+  Item,
+  Input,
+  Icon,
+  Button,
+  List,
+  ListItem,
+  Thumbnail,
+  Body,
+  Content,
+  Right
+} from "native-base";
 
-import { Container, Header, Item, Input, Icon, Button,
-      List, ListItem, Thumbnail, Body, Content, Right } from 'native-base';
+import PlaceHolder from "../components/PlaceHolder";
+import SongList from "../components/SongList";
 
-import PlaceHolder from '../components/PlaceHolder'
-import SongList from '../components/SongList'
-
-import getTracks from '../lib/api'
+import getTracks from "../lib/api";
 
 export default class Main extends Component {
   static navigationOptions = {
     header: null
-  }
+  };
 
   state = {
     songsReady: false,
     tracks: [],
-    text: '',
+    text: ""
   };
 
   fetchTracks(q) {
     getTracks(q)
       .then(data => this.setState({ tracks: data, songsReady: true }))
-      .catch(error => console.log(error))
+      .catch(error => console.log(error));
   }
 
+  handleChange = text => {
+    this.setState({ text });
+  };
+
+  handlePress = text => {
+    this.fetchTracks(text);
+  };
   render() {
-    const { tracks, text } = this.state
+    const { tracks, text } = this.state;
     return (
       <Container>
-          <Header searchBar rounded>
-              <Item>
-                  <Icon name="ios-search" />
-                  <Input
-                    autoCorrect={false}
-                    placeholder="Search"
-                    value={ this.state.text }
-                    onChangeText={(text) => this.setState({text})}
-                  />
-              </Item>
-              <Button transparent onPress={() => this.fetchTracks(text) }>
-                  <Text>Search</Text>
-              </Button>
-          </Header>
-          <Content>
-            {
-              this.state.songsReady ? (
-                <SongList tracks={ tracks }/>
-              ) : <PlaceHolder />
-            }
+        <Header searchBar rounded>
+          <Item>
+            <Icon name="ios-search" />
+            <Input
+              autoCorrect={false}
+              placeholder="Search"
+              value={this.state.text}
+              onChangeText={this.handleChange}
+            />
+          </Item>
+          <Button transparent onPress={this.handlePress}>
+            <Text>Search</Text>
+          </Button>
+        </Header>
+        <Content>
+          {this.state.songsReady
+            ? <SongList tracks={tracks} />
+            : <PlaceHolder />}
 
-          </Content>
+        </Content>
       </Container>
     );
   }

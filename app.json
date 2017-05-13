@@ -1,5 +1,7 @@
 {
   "expo": {
+    "primaryColor":"#BE90D4",
+    "orientation":"portrait",
     "sdkVersion": "16.0.0"
   }
 }
