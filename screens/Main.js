@@ -44,7 +44,7 @@ export default class Main extends Component {
     playbackInstanceDuration: null,
     isPlaying: true,
     isLoading: false,
-    showPlayer: true,
+    showPlayer: false,
     expanded: false
   };
 
@@ -70,10 +70,11 @@ export default class Main extends Component {
   handlePressAlbum = url => {
     fetch(url)
       .then(res => res.json())
-      .then(data => formateTracks(data.tracks.items[0]))
-      .then(songs => console.log(songs));
-
-    this.setState({ showPlayer: true });
+      .then(data => data.tracks.items)
+      .then(tracks => tracks.map(formateTracks))
+      .then(songs =>
+        this.setState({ playList: songs, showPlayer: true, expanded: true })
+      );
   };
 
   handlePressSong = async song => {
@@ -162,6 +163,7 @@ export default class Main extends Component {
             onNext={this.handleForward}
             onBack={this.handleBack}
             onExpand={this.handleExpand}
+            onPressSong={this.handlePressSong}
             {...this.state}
           />}
 

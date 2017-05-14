@@ -2,16 +2,9 @@
 
 import React from "react";
 import { View, Dimensions } from "react-native";
-import {
-  Button,
-  Icon,
-  Text,
-  Spinner,
-  List,
-  ListItem,
-  Content
-} from "native-base";
+import { Button, Icon, Text, Spinner, Content, Left, Right } from "native-base";
 import styled from "styled-components/native";
+import PlayList from "./PlayList";
 
 const { width, height } = Dimensions.get("window");
 
@@ -27,7 +20,9 @@ const Player = ({
   playbackInstancePosition,
   playbackInstanceDuration,
   expanded,
-  onExpand
+  onExpand,
+  playList,
+  onPressSong
 }) => (
   <Container style={{ height: expanded ? height : height * 0.25 }}>
     <Button full black onPress={onExpand}>
@@ -62,20 +57,7 @@ const Player = ({
         {formattedTime(playbackInstanceDuration)}
       </Text>
     </Info>
-    {expanded &&
-      <Wrapper>
-        <List>
-          <ListItem>
-            <Text>Simon Mignolet</Text>
-          </ListItem>
-          <ListItem>
-            <Text>Nathaniel Clyne</Text>
-          </ListItem>
-          <ListItem>
-            <Text>Dejan Lovren</Text>
-          </ListItem>
-        </List>
-      </Wrapper>}
+    {expanded && <PlayList playList={playList} onPressSong={onPressSong} />}
   </Container>
 );
 
@@ -103,10 +85,6 @@ const Controls = styled.View`
 const Info = styled.View`
   align-items: center;
   justify-content: center;
-`;
-
-const Wrapper = styled.View`
-  width: ${width}
 `;
 
 export default Player;
