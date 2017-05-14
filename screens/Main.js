@@ -77,7 +77,11 @@ export default class Main extends Component {
       );
   };
 
-  handlePressSong = async song => {
+  handlePressSong = song => {
+    this.loadNewInstance(song);
+  };
+
+  loadNewInstance = song => {
     const { playbackInstance } = this.state;
     if (playbackInstance !== null) {
       playbackInstance.unloadAsync();
@@ -87,35 +91,32 @@ export default class Main extends Component {
     const SOUND_URL = { source: song.preview_url };
     if (SOUND_URL.source !== null) {
       const sound = new Audio.Sound(SOUND_URL);
+      sound.setCallback(this.statusSong);
       this.setState({
         playbackInstance: sound,
         currentSong: song,
+        showPlayer: true,
         isLoading: true,
         index: song.track_number || 0
       });
-      sound.setCallback(this.statusSong);
-      sound.setCallbackPollingMillis(1000);
 
-      console.log("index", this.state.index);
-      try {
-        await sound.loadAsync();
-      } catch (e) {
-        error("Error al reproduccir");
-      }
+      sound.loadAsync();
     } else {
       error("Canción sin URL");
     }
   };
-
   statusSong = status => {
     if (status.isLoaded) {
       this.setState({
         playbackInstancePosition: status.positionMillis,
         playbackInstanceDuration: status.durationMillis,
         isPlaying: status.isPlaying,
-        isLoading: false,
-        showPlayer: true
+        isLoading: false
       });
+    }
+
+    if (status.didJustFinish) {
+      console.log("Finalizo de reproducir");
     }
   };
 
@@ -150,7 +151,7 @@ export default class Main extends Component {
       <Container>
         <Searcher handleChange={this.handleChange} state={this.state} />
         <Content>
-          {this.state.fetchReady
+          {this.state.fetchReady && text
             ? <ResultsList
                 tracks={tracks}
                 albums={albums}
