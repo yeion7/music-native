@@ -11,24 +11,13 @@ import Searcher from "../components/Searcher";
 import Player from "../components/Player";
 
 import { error } from "../lib/error";
-import { getTracks, getAlbum, formateTracks } from "../lib/api";
-import Expo, { Audio } from "expo";
+import { fetchItems } from "../lib/api";
+import Expo, { Audio, Font } from "expo";
 
 export default class Main extends Component {
   async componentDidMount() {
     await Audio.setIsEnabledAsync(true);
-    Audio.setAudioModeAsync({
-      allowsRecordingIOS: false,
-      interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
-      playsInSilentLockedModeIOS: true,
-      shouldDuckAndroid: true,
-      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX
-    });
   }
-
-  static navigationOptions = {
-    header: null
-  };
 
   state = {
     fetchReady: false,
@@ -48,23 +37,14 @@ export default class Main extends Component {
     expanded: false
   };
 
-  fetchTracks(q) {
-    getTracks(q)
-      .then(data => this.setState({ tracks: data }))
-      .catch(error => console.log(error));
-  }
-
-  fetchAlbum(q) {
-    getAlbum(q)
-      .then(data => this.setState({ albums: data }))
-      .catch(error => console.log(error));
-  }
-
-  handleChange = text => {
+  handleChange = async text => {
     this.setState({ text });
-    Promise.all([this.fetchTracks(text), this.fetchAlbum(text)]).then(() =>
-      this.setState({ fetchReady: true })
-    );
+    const data = await fetchItems(text);
+    this.setState({
+      tracks: data.tracks,
+      albums: data.albums,
+      fetchReady: true
+    });
   };
 
   handlePressAlbum = url => {

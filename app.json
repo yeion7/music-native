@@ -1,7 +1,15 @@
 {
   "expo": {
+    "name":"Platzi Music",
+    "description":"a seacher of music",
     "primaryColor":"#BE90D4",
     "orientation":"portrait",
-    "sdkVersion": "16.0.0"
+    "icon":"./assets/images/logo.png",
+
+    "sdkVersion": "16.0.0",
+    "loading": {
+      "icon":"./assets/images/logo.png",
+      "backgroundColor": "#BE90D4"
+    },
   }
 }
