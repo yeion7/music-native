@@ -55,7 +55,12 @@ export default class Main extends Component {
 
   handleChange = text => {
     this.setState({ text });
-    this.fetchItems();
+
+    let timeout;
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(this.fetchItems, 300);
   };
 
   handlePressAlbum = url => {
