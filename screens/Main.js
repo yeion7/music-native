@@ -11,7 +11,7 @@ import Searcher from "../components/Searcher";
 import Player from "../components/Player";
 
 import { error } from "../lib/error";
-import { fetchItems } from "../lib/api";
+import { fetchItems, fetchSongs } from "../lib/api";
 import Expo, { Audio, Font } from "expo";
 
 export default class Main extends Component {
@@ -26,7 +26,6 @@ export default class Main extends Component {
     currentSong: {},
     playList: [],
     text: "",
-    text: "",
     index: null,
     playbackInstance: null,
     playbackInstancePosition: null,
@@ -37,9 +36,10 @@ export default class Main extends Component {
     expanded: false
   };
 
-  handleChange = async text => {
-    this.setState({ text });
+  fetchItems = async () => {
+    const { text } = this.state;
     const data = await fetchItems(text);
+
     this.setState({
       tracks: data.tracks,
       albums: data.albums,
@@ -47,14 +47,19 @@ export default class Main extends Component {
     });
   };
 
+  fetchPlayList = async url => {
+    const songs = await fetchSongs(url);
+
+    this.setState({ playList: songs, showPlayer: true, expanded: true });
+  };
+
+  handleChange = text => {
+    this.setState({ text });
+    this.fetchItems();
+  };
+
   handlePressAlbum = url => {
-    fetch(url)
-      .then(res => res.json())
-      .then(data => data.tracks.items)
-      .then(tracks => tracks.map(formateTracks))
-      .then(songs =>
-        this.setState({ playList: songs, showPlayer: true, expanded: true })
-      );
+    this.fetchPlayList(url);
   };
 
   handlePressSong = song => {
@@ -84,7 +89,7 @@ export default class Main extends Component {
         index: song.track_number
       });
 
-      sound.loadAsync().then(status => sound.playAsync());
+      sound.loadAsync();
     } else {
       error("Canción sin URL");
     }
