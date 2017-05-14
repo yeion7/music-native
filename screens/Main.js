@@ -27,14 +27,14 @@ export default class Main extends Component {
     tracks: [],
     albums: [],
     text: "",
+    text: "",
     index: 0,
-    playbackInstanceName: "",
+    playbackInstance: null,
     playbackInstancePosition: null,
     playbackInstanceDuration: null,
-    shouldPlay: false,
-    isPlaying: false,
-    isBuffering: false,
-    isLoading: true
+    isPlaying: true,
+    isLoading: false,
+    showPlayer: true
   };
 
   fetchTracks(q) {
@@ -57,10 +57,16 @@ export default class Main extends Component {
   };
 
   async handlePress(song) {
-    console.log(song);
+    const { playbackInstance } = this.state;
+    if (playbackInstance !== null) {
+      playbackInstance.unloadAsync();
+      playbackInstance.setCallback(null);
+      this.setState({ playbackInstance: null });
+    }
     const SOUND_URL = { source: song.preview_url };
     if (SOUND_URL.source !== null) {
       const sound = new Audio.Sound(SOUND_URL);
+      this.setState({ playbackInstance: sound });
       try {
         await sound.loadAsync();
         await sound.playAsync();
@@ -72,8 +78,29 @@ export default class Main extends Component {
     }
   }
 
+  handlePlayPause = () => {
+    const { isPlaying } = this.state;
+    this.setState({ isPlaying: !isPlaying });
+    console.log(this.state.isPlaying);
+  };
+
+  handleForward = () => {
+    console.log("adelante");
+  };
+
+  handleBack = () => {
+    console.log("Atras");
+  };
+
   render() {
-    const { tracks, text, albums } = this.state;
+    const {
+      tracks,
+      text,
+      albums,
+      showPlayer,
+      isLoading,
+      isPlaying
+    } = this.state;
     return (
       <Container>
         <Searcher handleChange={this.handleChange} state={this.state} />
@@ -86,7 +113,15 @@ export default class Main extends Component {
               />
             : <PlaceHolder />}
         </Content>
-        <Player />
+        {showPlayer &&
+          <Player
+            onPlayPause={this.handlePlayPause}
+            onNext={this.handleForward}
+            onBack={this.handleBack}
+            loading={isLoading}
+            playing={isPlaying}
+          />}
+
       </Container>
     );
   }

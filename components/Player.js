@@ -2,24 +2,30 @@
 
 import React from "react";
 import { View, Dimensions } from "react-native";
-import { Button, Icon, Text } from "native-base";
+import { Button, Icon, Text, Spinner } from "native-base";
 import styled from "styled-components/native";
 
 var { width, height } = Dimensions.get("window");
 
-const Player = () => (
+const Player = ({ onPlayPause, onNext, onBack, loading, playing }) => (
   <Container>
-    <Controls>
-      <Button transparent full dark>
-        <Icon name="md-skip-backward" />
-      </Button>
-      <Button transparent full dark>
-        <Icon name="md-play" />
-      </Button>
-      <Button transparent disabled={true} full light>
-        <Icon name="md-skip-forward" />
-      </Button>
-    </Controls>
+    {loading
+      ? <Spinner color="black" />
+      : <Controls>
+          <Button transparent full dark onPress={onBack}>
+            <Icon name="md-skip-backward" />
+          </Button>
+          {playing
+            ? <Button transparent full dark onPress={onPlayPause}>
+                <Icon name="md-pause" />
+              </Button>
+            : <Button transparent full dark onPress={onPlayPause}>
+                <Icon name="md-play" />
+              </Button>}
+          <Button transparent full dark onPress={onNext}>
+            <Icon name="md-skip-forward" />
+          </Button>
+        </Controls>}
     <Info>
       <Text>
         Subeme la radio
