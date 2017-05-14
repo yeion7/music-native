@@ -1,6 +1,6 @@
 {
   "name": "platzi-music-native",
-  "version": "0.1.0",
+  "version": "0.9.0",
   "private": true,
   "devDependencies": {
     "jest-expo": "^0.4.0",
@@ -24,7 +24,6 @@
     "native-base": "^2.1.3",
     "react": "16.0.0-alpha.6",
     "react-native": "^0.43.4",
-    "react-navigation": "^1.0.0-beta.9",
     "styled-components": "^1.4.6"
   }
 }
