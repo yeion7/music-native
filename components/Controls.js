@@ -17,7 +17,6 @@ const Controls = ({ onBack, onPlayPause, onNext, isPlaying, index }) => (
       : <Button transparent full dark onPress={onPlayPause}>
           <Icon name="md-play" />
         </Button>}
-    {console.log(index)}
     <Button transparent dark onPress={onNext} disabled={index ? false : true}>
       <Icon name="md-skip-forward" />
     </Button>
@@ -30,4 +29,5 @@ const Container = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  padding: 5;
 `;

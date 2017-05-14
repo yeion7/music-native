@@ -119,8 +119,8 @@ export default class Main extends Component {
       });
     }
 
-    if (status.didJustFinish) {
-      console.log("Finalizo de reproducir");
+    if (status.didJustFinish && this.state.index) {
+      this.handleForward();
     }
   };
 
