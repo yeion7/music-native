@@ -104,7 +104,7 @@ export default class Main extends Component {
         index: song.track_number
       });
 
-      sound.loadAsync();
+      sound.loadAsync().then(status => sound.playAsync());
     } else {
       error("Canción sin URL");
     }
@@ -114,8 +114,7 @@ export default class Main extends Component {
       this.setState({
         playbackInstancePosition: status.positionMillis,
         playbackInstanceDuration: status.durationMillis,
-        isPlaying: status.isPlaying,
-        isLoading: false
+        isPlaying: status.isPlaying
       });
     }
 
@@ -125,6 +124,14 @@ export default class Main extends Component {
 
     if (status.didJustFinish && !this.state.index) {
       this.setState({ showPlayer: false });
+    }
+
+    if (status.isLoaded && !status.positionMillis) {
+      this.state.playbackInstance.playAsync();
+    }
+
+    if (status.isPlaying) {
+      this.setState({ isLoading: false });
     }
   };
 
