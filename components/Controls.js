@@ -7,9 +7,10 @@ import { Button, Icon } from "native-base";
 
 const Controls = ({ onBack, onPlayPause, onNext, isPlaying, index }) => (
   <Container>
-    <Button transparent dark onPress={onBack} disabled={index ? false : true}>
-      <Icon name="md-skip-backward" />
-    </Button>
+    {index &&
+      <Button transparent dark onPress={onBack}>
+        <Icon name="md-skip-backward" />
+      </Button>}
     {isPlaying
       ? <Button transparent full dark onPress={onPlayPause}>
           <Icon name="md-pause" />
@@ -17,9 +18,10 @@ const Controls = ({ onBack, onPlayPause, onNext, isPlaying, index }) => (
       : <Button transparent full dark onPress={onPlayPause}>
           <Icon name="md-play" />
         </Button>}
-    <Button transparent dark onPress={onNext} disabled={index ? false : true}>
-      <Icon name="md-skip-forward" />
-    </Button>
+    {index &&
+      <Button transparent dark onPress={onNext}>
+        <Icon name="md-skip-forward" />
+      </Button>}
   </Container>
 );
 

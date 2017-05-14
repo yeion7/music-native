@@ -9,7 +9,11 @@ import { formattedTime } from "../lib/time";
 
 const Info = ({ song, position, duration }) => (
   <Container>
-    <Text>
+    <Text
+      style={{ textAlign: "center", paddingHorizontal: 10 }}
+      ellipsizeMode={"tail"}
+      numberOfLines={1}
+    >
       {song.name}
     </Text>
     <Text note>
