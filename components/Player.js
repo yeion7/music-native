@@ -23,9 +23,10 @@ const Player = ({
   expanded,
   onExpand,
   playList,
-  onPressSong
+  onPressSong,
+  index
 }) => (
-  <Container style={{ height: expanded ? height : height * 0.25 }}>
+  <Container style={{ height: expanded ? height : height * 0.27 }}>
     {playList.length > 0
       ? <Button full black onPress={onExpand}>
           {expanded ? <Icon name="arrow-down" /> : <Icon name="arrow-up" />}
@@ -39,6 +40,7 @@ const Player = ({
           onNext={onNext}
           onBack={onBack}
           isPlaying={isPlaying}
+          index={index}
         />}
 
     <Info

@@ -38,7 +38,7 @@ export default class Main extends Component {
     playList: [],
     text: "",
     text: "",
-    index: 0,
+    index: null,
     playbackInstance: null,
     playbackInstancePosition: null,
     playbackInstanceDuration: null,
@@ -78,6 +78,10 @@ export default class Main extends Component {
   };
 
   handlePressSong = song => {
+    if (song.track_number) {
+      this.setState({ index: song.track_number });
+    }
+
     this.loadNewInstance(song);
   };
 
@@ -97,7 +101,7 @@ export default class Main extends Component {
         currentSong: song,
         showPlayer: true,
         isLoading: true,
-        index: song.track_number || 0
+        index: song.track_number
       });
 
       sound.loadAsync();
@@ -138,11 +142,15 @@ export default class Main extends Component {
   };
 
   handleForward = () => {
-    console.log("adelante");
+    const { index, playList } = this.state;
+    newIndex = index >= playList.length ? 0 : index;
+    this.loadNewInstance(playList[newIndex]);
   };
 
   handleBack = () => {
-    console.log("Atras");
+    const { index, playList } = this.state;
+    newIndex = index == 1 ? playList.length - 1 : index - 2;
+    this.loadNewInstance(playList[newIndex]);
   };
 
   render() {

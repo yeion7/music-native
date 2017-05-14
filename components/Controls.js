@@ -5,9 +5,9 @@ import { View, Text, StyleSheet } from "react-native";
 import styled from "styled-components/native";
 import { Button, Icon } from "native-base";
 
-const Controls = ({ onBack, onPlayPause, onNext, isPlaying }) => (
+const Controls = ({ onBack, onPlayPause, onNext, isPlaying, index }) => (
   <Container>
-    <Button transparent full dark onPress={onBack}>
+    <Button transparent dark onPress={onBack} disabled={index ? false : true}>
       <Icon name="md-skip-backward" />
     </Button>
     {isPlaying
@@ -17,7 +17,8 @@ const Controls = ({ onBack, onPlayPause, onNext, isPlaying }) => (
       : <Button transparent full dark onPress={onPlayPause}>
           <Icon name="md-play" />
         </Button>}
-    <Button transparent full dark onPress={onNext}>
+    {console.log(index)}
+    <Button transparent dark onPress={onNext} disabled={index ? false : true}>
       <Icon name="md-skip-forward" />
     </Button>
   </Container>

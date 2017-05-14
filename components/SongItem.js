@@ -23,7 +23,10 @@ const SongItem = ({
   preview_url,
   handlePress
 }) => (
-  <ListItem key={id} onPress={() => handlePress({ id, name, preview_url })}>
+  <ListItem
+    key={id}
+    onPress={() => handlePress({ id, name, preview_url, track_number: null })}
+  >
     <Thumbnail square size={80} source={{ uri: album.images[2].url }} />
     <Body>
       <Text>{name}</Text>
