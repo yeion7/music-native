@@ -87,13 +87,16 @@ export default class Main extends Component {
     const SOUND_URL = { source: song.preview_url };
     if (SOUND_URL.source !== null) {
       const sound = new Audio.Sound(SOUND_URL);
-      sound.setCallback(this.statusSong);
-      sound.setCallbackPollingMillis(1000);
       this.setState({
         playbackInstance: sound,
         currentSong: song,
-        isLoading: true
+        isLoading: true,
+        index: song.track_number || 0
       });
+      sound.setCallback(this.statusSong);
+      sound.setCallbackPollingMillis(1000);
+
+      console.log("index", this.state.index);
       try {
         await sound.loadAsync();
       } catch (e) {
@@ -105,7 +108,6 @@ export default class Main extends Component {
   };
 
   statusSong = status => {
-    console.log(status);
     if (status.isLoaded) {
       this.setState({
         playbackInstancePosition: status.positionMillis,

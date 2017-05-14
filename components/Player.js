@@ -26,7 +26,7 @@ const Player = ({
   onPressSong
 }) => (
   <Container style={{ height: expanded ? height : height * 0.25 }}>
-    {playList.length > 1
+    {playList.length > 0
       ? <Button full black onPress={onExpand}>
           {expanded ? <Icon name="arrow-down" /> : <Icon name="arrow-up" />}
         </Button>
