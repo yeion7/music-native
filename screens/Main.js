@@ -117,7 +117,7 @@ export default class Main extends Component {
   };
 
   handleExpand = () => {
-    this.setState({ expanded: true });
+    this.setState({ expanded: !this.state.expanded });
   };
 
   handlePlayPause = () => {
@@ -161,6 +161,7 @@ export default class Main extends Component {
             onPlayPause={this.handlePlayPause}
             onNext={this.handleForward}
             onBack={this.handleBack}
+            onExpand={this.handleExpand}
             {...this.state}
           />}
 

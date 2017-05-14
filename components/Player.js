@@ -26,11 +26,12 @@ const Player = ({
   currentSong,
   playbackInstancePosition,
   playbackInstanceDuration,
-  expanded
+  expanded,
+  onExpand
 }) => (
-  <Container>
-    <Button iconRight transparent black>
-      <Icon name="arrow-up" />
+  <Container style={{ height: expanded ? height : height * 0.25 }}>
+    <Button full black onPress={onExpand}>
+      {expanded ? <Icon name="arrow-down" /> : <Icon name="arrow-up" />}
     </Button>
     {isLoading
       ? <Spinner color="black" />
@@ -86,7 +87,7 @@ const Container = styled.View`
   background: white;
   overflow: visible;
   max-height: ${height}
-  height: ${height * 0.2};
+  height: ${height};
   width: ${width}
   align-items: center;
   justify-content: flex-start;
