@@ -15,18 +15,23 @@ const Player = ({
   onPlayPause,
   onNext,
   onBack,
+  onExpand,
+  onPressSong,
   isLoading,
   isPlaying,
   currentSong,
   playbackInstancePosition,
   playbackInstanceDuration,
   expanded,
-  onExpand,
   playList,
-  onPressSong,
   index
 }) => (
-  <Container style={{ height: expanded ? height : height * 0.27 }}>
+  <Container
+    style={{
+      height: expanded ? height : height * 0.27,
+      justifyContent: expanded ? "flex-start" : "center"
+    }}
+  >
     {playList.length > 0
       ? <Button full black onPress={onExpand}>
           {expanded ? <Icon name="arrow-down" /> : <Icon name="arrow-up" />}
@@ -63,7 +68,6 @@ const Container = styled.View`
   max-height: ${height}
   width: ${width}
   align-items: center;
-  justify-content: flex-start;
   flex: 1;
 `;
 
