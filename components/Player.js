@@ -2,13 +2,14 @@
 
 import React from "react";
 import { View, Dimensions } from "react-native";
-import { Button, Icon, Text, Spinner, Content, Left, Right } from "native-base";
-import styled from "styled-components/native";
+import { Button, Icon, Spinner } from "native-base";
+
 import PlayList from "./PlayList";
+import Controls from "./Controls";
+import Info from "./Info";
 
 const { width, height } = Dimensions.get("window");
-
-import { formattedTime } from "../lib/time";
+import styled from "styled-components/native";
 
 const Player = ({
   onPlayPause,
@@ -25,38 +26,27 @@ const Player = ({
   onPressSong
 }) => (
   <Container style={{ height: expanded ? height : height * 0.25 }}>
-    <Button full black onPress={onExpand}>
-      {expanded ? <Icon name="arrow-down" /> : <Icon name="arrow-up" />}
-    </Button>
+    {playList.length > 1
+      ? <Button full black onPress={onExpand}>
+          {expanded ? <Icon name="arrow-down" /> : <Icon name="arrow-up" />}
+        </Button>
+      : null}
+
     {isLoading
       ? <Spinner color="black" />
-      : <Controls>
-          <Button transparent full dark onPress={onBack}>
-            <Icon name="md-skip-backward" />
-          </Button>
-          {isPlaying
-            ? <Button transparent full dark onPress={onPlayPause}>
-                <Icon name="md-pause" />
-              </Button>
-            : <Button transparent full dark onPress={onPlayPause}>
-                <Icon name="md-play" />
-              </Button>}
-          <Button transparent full dark onPress={onNext}>
-            <Icon name="md-skip-forward" />
-          </Button>
-        </Controls>}
-    <Info>
-      <Text>
-        {currentSong.name}
-      </Text>
-      <Text note>
-        {formattedTime(playbackInstancePosition)}
-        {" "}
-        /
-        {" "}
-        {formattedTime(playbackInstanceDuration)}
-      </Text>
-    </Info>
+      : <Controls
+          onPlayPause={onPlayPause}
+          onNext={onNext}
+          onBack={onBack}
+          isPlaying={isPlaying}
+        />}
+
+    <Info
+      position={playbackInstancePosition}
+      duration={playbackInstanceDuration}
+      song={currentSong}
+    />
+
     {expanded && <PlayList playList={playList} onPressSong={onPressSong} />}
   </Container>
 );
@@ -69,22 +59,10 @@ const Container = styled.View`
   background: white;
   overflow: visible;
   max-height: ${height}
-  height: ${height};
   width: ${width}
   align-items: center;
   justify-content: flex-start;
   flex: 1;
-`;
-
-const Controls = styled.View`
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Info = styled.View`
-  align-items: center;
-  justify-content: center;
 `;
 
 export default Player;
