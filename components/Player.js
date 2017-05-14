@@ -5,17 +5,28 @@ import { View, Dimensions } from "react-native";
 import { Button, Icon, Text, Spinner } from "native-base";
 import styled from "styled-components/native";
 
-var { width, height } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 
-const Player = ({ onPlayPause, onNext, onBack, loading, playing }) => (
+import { formattedTime } from "../lib/time";
+
+const Player = ({
+  onPlayPause,
+  onNext,
+  onBack,
+  isLoading,
+  isPlaying,
+  currentSong,
+  playbackInstancePosition,
+  playbackInstanceDuration
+}) => (
   <Container>
-    {loading
+    {isLoading
       ? <Spinner color="black" />
       : <Controls>
           <Button transparent full dark onPress={onBack}>
             <Icon name="md-skip-backward" />
           </Button>
-          {playing
+          {isPlaying
             ? <Button transparent full dark onPress={onPlayPause}>
                 <Icon name="md-pause" />
               </Button>
@@ -28,10 +39,14 @@ const Player = ({ onPlayPause, onNext, onBack, loading, playing }) => (
         </Controls>}
     <Info>
       <Text>
-        Subeme la radio
+        {currentSong.name}
       </Text>
       <Text note>
-        1:00 / 3:20
+        {formattedTime(playbackInstancePosition)}
+        {" "}
+        /
+        {" "}
+        {formattedTime(playbackInstanceDuration)}
       </Text>
     </Info>
   </Container>

@@ -10,6 +10,7 @@ import ResultsList from "../components/ResultsList";
 import Searcher from "../components/Searcher";
 import Player from "../components/Player";
 
+import { error } from "../lib/error";
 import { getTracks, getAlbum } from "../lib/api";
 import Expo, { Audio } from "expo";
 
@@ -26,6 +27,7 @@ export default class Main extends Component {
     fetchReady: false,
     tracks: [],
     albums: [],
+    currentSong: {},
     text: "",
     text: "",
     index: 0,
@@ -34,7 +36,7 @@ export default class Main extends Component {
     playbackInstanceDuration: null,
     isPlaying: true,
     isLoading: false,
-    showPlayer: true
+    showPlayer: false
   };
 
   fetchTracks(q) {
@@ -56,7 +58,7 @@ export default class Main extends Component {
     );
   };
 
-  async handlePress(song) {
+  handlePress = async song => {
     const { playbackInstance } = this.state;
     if (playbackInstance !== null) {
       playbackInstance.unloadAsync();
@@ -66,22 +68,46 @@ export default class Main extends Component {
     const SOUND_URL = { source: song.preview_url };
     if (SOUND_URL.source !== null) {
       const sound = new Audio.Sound(SOUND_URL);
-      this.setState({ playbackInstance: sound });
+      sound.setCallback(this.statusSong);
+      sound.setCallbackPollingMillis(1000);
+      this.setState({
+        playbackInstance: sound,
+        currentSong: song,
+        isLoading: true
+      });
       try {
         await sound.loadAsync();
-        await sound.playAsync();
       } catch (e) {
         error("Error al reproduccir");
       }
     } else {
       error("Canción sin URL");
     }
-  }
+  };
+
+  statusSong = status => {
+    if (status.isLoaded) {
+      this.setState({
+        playbackInstancePosition: status.positionMillis,
+        playbackInstanceDuration: status.durationMillis,
+        isPlaying: status.isPlaying,
+        isLoading: false,
+        showPlayer: true
+      });
+    }
+  };
 
   handlePlayPause = () => {
-    const { isPlaying } = this.state;
-    this.setState({ isPlaying: !isPlaying });
-    console.log(this.state.isPlaying);
+    const { isPlaying, playbackInstance } = this.state;
+    if (playbackInstance != null) {
+      if (isPlaying) {
+        playbackInstance.pauseAsync();
+        this.setState({ isPlaying: !isPlaying });
+      } else {
+        playbackInstance.playAsync();
+        this.setState({ isPlaying: !isPlaying });
+      }
+    }
   };
 
   handleForward = () => {
@@ -93,14 +119,7 @@ export default class Main extends Component {
   };
 
   render() {
-    const {
-      tracks,
-      text,
-      albums,
-      showPlayer,
-      isLoading,
-      isPlaying
-    } = this.state;
+    const { tracks, text, albums, showPlayer } = this.state;
     return (
       <Container>
         <Searcher handleChange={this.handleChange} state={this.state} />
@@ -118,8 +137,7 @@ export default class Main extends Component {
             onPlayPause={this.handlePlayPause}
             onNext={this.handleForward}
             onBack={this.handleBack}
-            loading={isLoading}
-            playing={isPlaying}
+            {...this.state}
           />}
 
       </Container>
