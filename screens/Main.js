@@ -122,6 +122,10 @@ export default class Main extends Component {
     if (status.didJustFinish && this.state.index) {
       this.handleForward();
     }
+
+    if (status.didJustFinish && !this.state.index) {
+      this.setState({ showPlayer: false });
+    }
   };
 
   handleExpand = () => {
