@@ -9,7 +9,7 @@ import SongItem from "./SongItem";
 import AlbumItem from "./AlbumItem";
 import { error } from "../lib/error";
 
-const ResultsList = ({ tracks, albums, handlePress }) => (
+const ResultsList = ({ tracks, albums, handlePress, getSongs }) => (
   <View>
     <Separator>Canciones</Separator>
     <List
@@ -19,7 +19,7 @@ const ResultsList = ({ tracks, albums, handlePress }) => (
     <Separator>Álbumes</Separator>
     <List
       dataArray={albums}
-      renderRow={info => <AlbumItem {...info} handlePress={handlePress} />}
+      renderRow={info => <AlbumItem {...info} handlePress={getSongs} />}
     />
   </View>
 );

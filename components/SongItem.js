@@ -27,7 +27,7 @@ const SongItem = ({
     <Thumbnail square size={80} source={{ uri: album.images[2].url }} />
     <Body>
       <Text>{name}</Text>
-      <Text note>{artists.name}</Text>
+      <Text note>{artists.name || "NA"}</Text>
       <Text note>{formattedTime(duration_ms)}</Text>
     </Body>
     <Right>

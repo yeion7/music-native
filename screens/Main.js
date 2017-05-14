@@ -11,12 +11,19 @@ import Searcher from "../components/Searcher";
 import Player from "../components/Player";
 
 import { error } from "../lib/error";
-import { getTracks, getAlbum } from "../lib/api";
+import { getTracks, getAlbum, formateTracks } from "../lib/api";
 import Expo, { Audio } from "expo";
 
 export default class Main extends Component {
   async componentDidMount() {
     await Audio.setIsEnabledAsync(true);
+    Audio.setAudioModeAsync({
+      allowsRecordingIOS: false,
+      interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+      playsInSilentLockedModeIOS: true,
+      shouldDuckAndroid: true,
+      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX
+    });
   }
 
   static navigationOptions = {
@@ -28,6 +35,7 @@ export default class Main extends Component {
     tracks: [],
     albums: [],
     currentSong: {},
+    playList: [],
     text: "",
     text: "",
     index: 0,
@@ -36,7 +44,8 @@ export default class Main extends Component {
     playbackInstanceDuration: null,
     isPlaying: true,
     isLoading: false,
-    showPlayer: false
+    showPlayer: true,
+    expanded: false
   };
 
   fetchTracks(q) {
@@ -58,7 +67,16 @@ export default class Main extends Component {
     );
   };
 
-  handlePress = async song => {
+  handlePressAlbum = url => {
+    fetch(url)
+      .then(res => res.json())
+      .then(data => formateTracks(data.tracks.items[0]))
+      .then(songs => console.log(songs));
+
+    this.setState({ showPlayer: true });
+  };
+
+  handlePressSong = async song => {
     const { playbackInstance } = this.state;
     if (playbackInstance !== null) {
       playbackInstance.unloadAsync();
@@ -86,6 +104,7 @@ export default class Main extends Component {
   };
 
   statusSong = status => {
+    console.log(status);
     if (status.isLoaded) {
       this.setState({
         playbackInstancePosition: status.positionMillis,
@@ -95,6 +114,10 @@ export default class Main extends Component {
         showPlayer: true
       });
     }
+  };
+
+  handleExpand = () => {
+    this.setState({ expanded: true });
   };
 
   handlePlayPause = () => {
@@ -128,7 +151,8 @@ export default class Main extends Component {
             ? <ResultsList
                 tracks={tracks}
                 albums={albums}
-                handlePress={this.handlePress}
+                handlePress={this.handlePressSong}
+                getSongs={this.handlePressAlbum}
               />
             : <PlaceHolder />}
         </Content>

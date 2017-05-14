@@ -14,8 +14,16 @@ import {
 
 import { formattedTime } from "../lib/time";
 
-const AlbumItem = ({ id, name, image, artists, url_songs, type }) => (
-  <ListItem key={id} onPress={() => console.log(url_songs)}>
+const AlbumItem = ({
+  id,
+  name,
+  image,
+  artists,
+  url_songs,
+  type,
+  handlePress
+}) => (
+  <ListItem key={id} onPress={() => handlePress(url_songs)}>
     <Thumbnail square size={80} source={{ uri: image }} />
     <Body>
       <Text>{name}</Text>

@@ -2,7 +2,15 @@
 
 import React from "react";
 import { View, Dimensions } from "react-native";
-import { Button, Icon, Text, Spinner } from "native-base";
+import {
+  Button,
+  Icon,
+  Text,
+  Spinner,
+  List,
+  ListItem,
+  Content
+} from "native-base";
 import styled from "styled-components/native";
 
 const { width, height } = Dimensions.get("window");
@@ -17,9 +25,13 @@ const Player = ({
   isPlaying,
   currentSong,
   playbackInstancePosition,
-  playbackInstanceDuration
+  playbackInstanceDuration,
+  expanded
 }) => (
   <Container>
+    <Button iconRight transparent black>
+      <Icon name="arrow-up" />
+    </Button>
     {isLoading
       ? <Spinner color="black" />
       : <Controls>
@@ -49,6 +61,20 @@ const Player = ({
         {formattedTime(playbackInstanceDuration)}
       </Text>
     </Info>
+    {expanded &&
+      <Wrapper>
+        <List>
+          <ListItem>
+            <Text>Simon Mignolet</Text>
+          </ListItem>
+          <ListItem>
+            <Text>Nathaniel Clyne</Text>
+          </ListItem>
+          <ListItem>
+            <Text>Dejan Lovren</Text>
+          </ListItem>
+        </List>
+      </Wrapper>}
   </Container>
 );
 
@@ -59,11 +85,11 @@ const Container = styled.View`
   right: 0;
   background: white;
   overflow: visible;
-  max-height: 100;
-  height: ${height * 0.25};
+  max-height: ${height}
+  height: ${height * 0.2};
   width: ${width}
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex: 1;
 `;
 
@@ -76,6 +102,10 @@ const Controls = styled.View`
 const Info = styled.View`
   align-items: center;
   justify-content: center;
+`;
+
+const Wrapper = styled.View`
+  width: ${width}
 `;
 
 export default Player;
