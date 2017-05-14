@@ -63,10 +63,6 @@ export default class Main extends Component {
   };
 
   handlePressSong = song => {
-    if (song.track_number) {
-      this.setState({ index: song.track_number });
-    }
-
     this.loadNewInstance(song);
   };
 
@@ -81,6 +77,7 @@ export default class Main extends Component {
     if (SOUND_URL.source !== null) {
       const sound = new Audio.Sound(SOUND_URL);
       sound.setCallback(this.statusSong);
+
       this.setState({
         playbackInstance: sound,
         currentSong: song,
@@ -94,6 +91,7 @@ export default class Main extends Component {
       error("Canción sin URL");
     }
   };
+
   statusSong = status => {
     if (status.isLoaded) {
       this.setState({
@@ -126,6 +124,7 @@ export default class Main extends Component {
 
   handlePlayPause = () => {
     const { isPlaying, playbackInstance } = this.state;
+
     if (playbackInstance != null) {
       if (isPlaying) {
         playbackInstance.pauseAsync();
@@ -139,6 +138,7 @@ export default class Main extends Component {
 
   handleForward = () => {
     const { index, playList } = this.state;
+
     newIndex = index >= playList.length ? 0 : index;
     this.loadNewInstance(playList[newIndex]);
   };
@@ -151,19 +151,22 @@ export default class Main extends Component {
 
   render() {
     const { tracks, text, albums, showPlayer } = this.state;
+
     return (
       <Container>
-        <Searcher handleChange={this.handleChange} state={this.state} />
+        <Searcher handleChange={this.handleChange} text={text} />
+
         <Content>
           {this.state.fetchReady && text
             ? <ResultsList
                 tracks={tracks}
                 albums={albums}
                 handlePress={this.handlePressSong}
-                getSongs={this.handlePressAlbum}
+                handlePressAlbum={this.handlePressAlbum}
               />
             : <PlaceHolder />}
         </Content>
+
         {showPlayer &&
           <Player
             onPlayPause={this.handlePlayPause}

@@ -5,7 +5,7 @@ import { View, Dimensions } from "react-native";
 import { Text, List, ListItem, Left, Right } from "native-base";
 import styled from "styled-components/native";
 
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 
 import { formattedTime } from "../lib/time";
 const PlayList = ({ playList, onPressSong }) => (
@@ -27,6 +27,8 @@ const PlayList = ({ playList, onPressSong }) => (
 );
 
 const Wrapper = styled.View`
-  width: ${width}
+  flex:1;
+  width: ${width};
+  height: ${height};
 `;
 export default PlayList;
