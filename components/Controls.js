@@ -31,5 +31,5 @@ const Container = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 5;
+  padding-vertical: 10;
 `;
