@@ -6,7 +6,7 @@ export function search(
 ) {
   switch (action.type) {
     case "TYPING":
-      return (state.text = "funciona");
+      return action.text;
       break;
     default:
       return state;

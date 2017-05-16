@@ -4597,6 +4597,12 @@ redux-logger@^2.7.4:
   dependencies:
     deep-diff "0.3.4"
 
+redux-logger@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/redux-logger/-/redux-logger-3.0.1.tgz#ae8ae4c3c55ed3dd7aa31509f0856c5d3751057a"
+  dependencies:
+    deep-diff "0.3.4"
+
 redux@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/redux/-/redux-3.6.0.tgz#887c2b3d0b9bd86eca2be70571c27654c19e188d"

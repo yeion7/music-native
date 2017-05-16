@@ -7,7 +7,7 @@ import { Container, Content } from "native-base";
 
 import PlaceHolder from "../components/PlaceHolder";
 import ResultsList from "../components/ResultsList";
-import Searcher from "../components/Searcher";
+import SearcherContainer from "../containers/SearcherContainer";
 import Player from "../components/Player";
 
 import { error } from "../utils/error";
@@ -166,7 +166,7 @@ export default class Main extends Component {
 
     return (
       <Container>
-        <Searcher />
+        <SearcherContainer />
 
         <Content>
           {this.state.fetchReady && text
