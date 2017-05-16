@@ -12,7 +12,7 @@ import {
   Text
 } from "native-base";
 
-import { formattedTime } from "../lib/time";
+import { formattedTime } from "../utils/time";
 
 const SongItem = ({
   id,
@@ -24,7 +24,6 @@ const SongItem = ({
   handlePress
 }) => (
   <ListItem
-    key={id}
     onPress={() => handlePress({ id, name, preview_url, track_number: null })}
   >
     <Thumbnail square size={80} source={{ uri: album.images[2].url }} />

@@ -5,7 +5,7 @@ import { View } from "react-native";
 import { Text } from "native-base";
 import styled from "styled-components/native";
 
-import { formattedTime } from "../lib/time";
+import { formattedTime } from "../utils/time";
 
 const Info = ({ song, position, duration }) => (
   <Container>

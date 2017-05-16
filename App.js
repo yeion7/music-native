@@ -1,10 +1,18 @@
 /* @flow */
 
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { Provider } from "react-redux";
+import store from "./src/store/store";
+import Main from "./src/screens/Main";
 
-import Main from "./screens/Main";
-
-const App = () => <Main />;
-
+console.log("store", store);
+class App extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <Main />
+      </Provider>
+    );
+  }
+}
 export default App;

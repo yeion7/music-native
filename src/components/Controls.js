@@ -2,8 +2,9 @@
 
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import styled from "styled-components/native";
 import { Button, Icon } from "native-base";
+
+import styled from "styled-components/native";
 
 const Controls = ({ onBack, onPlayPause, onNext, isPlaying, index }) => (
   <Container>

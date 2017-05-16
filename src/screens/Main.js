@@ -10,8 +10,8 @@ import ResultsList from "../components/ResultsList";
 import Searcher from "../components/Searcher";
 import Player from "../components/Player";
 
-import { error } from "../lib/error";
-import { fetchItems, fetchSongs } from "../lib/api";
+import { error } from "../utils/error";
+import { fetchItems, fetchSongs } from "../utils/api";
 import Expo, { Audio, Font } from "expo";
 
 export default class Main extends Component {
@@ -159,7 +159,7 @@ export default class Main extends Component {
 
     return (
       <Container>
-        <Searcher handleChange={this.handleChange} text={text} />
+        <Searcher />
 
         <Content>
           {this.state.fetchReady && text

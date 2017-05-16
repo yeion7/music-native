@@ -3,11 +3,12 @@
 import React from "react";
 import { View, Dimensions } from "react-native";
 import { Text, List, ListItem, Left, Right } from "native-base";
+
 import styled from "styled-components/native";
+import { formattedTime } from "../utils/time";
 
 const { width, height } = Dimensions.get("window");
 
-import { formattedTime } from "../lib/time";
 const PlayList = ({ playList, onPressSong }) => (
   <Wrapper>
     <List

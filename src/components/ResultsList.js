@@ -2,24 +2,29 @@
 
 import React, { Component } from "react";
 import { View, StyleSheet } from "react-native";
-import { Toast } from "native-base";
 import { List } from "native-base";
-import styled from "styled-components/native";
+
 import SongItem from "./SongItem";
 import AlbumItem from "./AlbumItem";
-import { error } from "../lib/error";
+
+import styled from "styled-components/native";
+import { error } from "../utils/error";
 
 const ResultsList = ({ tracks, albums, handlePress, handlePressAlbum }) => (
   <View>
     <Separator>Canciones</Separator>
     <List
       dataArray={tracks}
-      renderRow={info => <SongItem {...info} handlePress={handlePress} />}
+      renderRow={info => (
+        <SongItem key={info.id} {...info} handlePress={handlePress} />
+      )}
     />
     <Separator>Álbumes</Separator>
     <List
       dataArray={albums}
-      renderRow={info => <AlbumItem {...info} handlePress={handlePressAlbum} />}
+      renderRow={info => (
+        <AlbumItem key={info.id} {...info} handlePress={handlePressAlbum} />
+      )}
     />
   </View>
 );
