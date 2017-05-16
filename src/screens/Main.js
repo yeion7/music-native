@@ -17,6 +17,13 @@ import Expo, { Audio, Font } from "expo";
 export default class Main extends Component {
   async componentDidMount() {
     await Audio.setIsEnabledAsync(true);
+    Audio.setAudioModeAsync({
+      allowsRecordingIOS: false,
+      interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+      playsInSilentLockedModeIOS: true,
+      shouldDuckAndroid: true,
+      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX
+    });
   }
 
   state = {
