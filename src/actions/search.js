@@ -17,7 +17,7 @@ export function fecthList(text) {
 
   thunk.meta = {
     debounce: {
-      time: 500,
+      time: 300,
       key: "RECIVE_ITEMS",
       cancel: false
     }

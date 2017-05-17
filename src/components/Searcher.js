@@ -8,12 +8,7 @@ const Searcher = ({ text, onChange }) => (
   <Header searchBar rounded>
     <Item>
       <Icon name="ios-search" />
-      <Input
-        autoCorrect={false}
-        placeholder="Search"
-        value={text}
-        onChangeText={onChange}
-      />
+      <Input autoCorrect={false} placeholder="Search" onChangeText={onChange} />
     </Item>
   </Header>
 );
