@@ -3,10 +3,9 @@
 import React, { Component } from "react";
 import { View } from "react-native";
 
-import { Container, Content } from "native-base";
+import { Container } from "native-base";
 
-import PlaceHolder from "../components/PlaceHolder";
-import ResultsList from "../components/ResultsList";
+import ResultsListContainer from "../containers/ResultsListContainer";
 import SearcherContainer from "../containers/SearcherContainer";
 import Player from "../components/Player";
 
@@ -27,12 +26,8 @@ export default class Main extends Component {
   }
 
   state = {
-    fetchReady: false,
-    tracks: [],
-    albums: [],
     currentSong: {},
     playList: [],
-    text: "",
     index: null,
     playbackInstance: null,
     playbackInstancePosition: null,
@@ -43,31 +38,10 @@ export default class Main extends Component {
     expanded: false
   };
 
-  fetchItems = async () => {
-    const { text } = this.state;
-    const data = await fetchItems(text);
-
-    this.setState({
-      tracks: data.tracks,
-      albums: data.albums,
-      fetchReady: true
-    });
-  };
-
   fetchPlayList = async url => {
     const songs = await fetchSongs(url);
 
     this.setState({ playList: songs, showPlayer: true, expanded: true });
-  };
-
-  handleChange = text => {
-    this.setState({ text });
-
-    let timeout;
-    if (timeout) {
-      clearTimeout(timeout);
-    }
-    timeout = setTimeout(this.fetchItems, 300);
   };
 
   handlePressAlbum = url => {
@@ -168,16 +142,7 @@ export default class Main extends Component {
       <Container>
         <SearcherContainer />
 
-        <Content>
-          {this.state.fetchReady && text
-            ? <ResultsList
-                tracks={tracks}
-                albums={albums}
-                handlePress={this.handlePressSong}
-                handlePressAlbum={this.handlePressAlbum}
-              />
-            : <PlaceHolder />}
-        </Content>
+        <ResultsListContainer />
 
         {showPlayer &&
           <Player

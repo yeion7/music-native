@@ -4,7 +4,7 @@ import React, { Component } from "react";
 
 import Searcher from "../components/Searcher";
 import { connect } from "react-redux";
-import { changeSearch } from "../actions/search";
+import { fecthList } from "../actions/search";
 
 class SearcherContainer extends Component {
   render() {
@@ -16,8 +16,6 @@ const mapStateToProps = state => ({
   text: state.search.text
 });
 
-const mapDispatchToProps = dispatch => ({
-  onChange: text => dispatch(changeSearch(text))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearcherContainer);
+export default connect(mapStateToProps, { onChange: fecthList })(
+  SearcherContainer
+);
