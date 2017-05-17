@@ -6,12 +6,19 @@ export const reciveItems = data => ({
   }
 });
 
-export const onPressSong = song => ({
-  type: "CHANGE_PLAYING_SONG",
-  song
-});
+export const onPressSong = song => {
+  return {
+    type: "CHANGE_PLAYING_SONG",
+    song
+  };
+};
 
 export const onPressAlbum = album => ({
   type: "CHANGE_SELECTED_PLAYLISTS",
   album
+});
+
+export const fetchReady = value => ({
+  type: "FETCH_READY",
+  value
 });

@@ -1,5 +1,5 @@
 import { fetchItems } from "../utils/api";
-import { reciveItems } from "../actions/list";
+import { reciveItems, fetchReady } from "../actions/list";
 
 export const changeSearch = text => ({
   type: "TYPING",
@@ -11,7 +11,7 @@ export function fecthList(text) {
     dispatch(changeSearch(text));
 
     const data = await fetchItems(text);
-
+    dispatch(fetchReady(true));
     dispatch(reciveItems(data));
   };
 

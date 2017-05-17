@@ -22,8 +22,8 @@ class ResultListContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  tracks: state.list.tracks,
-  albums: state.list.albums,
+  tracks: state.list.items.tracks,
+  albums: state.list.items.albums,
   fetchReady: state.list.fetchReady,
   text: state.search
 });
