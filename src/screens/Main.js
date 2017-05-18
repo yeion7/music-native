@@ -10,7 +10,6 @@ import SearcherContainer from "../containers/SearcherContainer";
 import Player from "../components/Player";
 
 import { error } from "../utils/error";
-import { fetchItems, fetchSongs } from "../utils/api";
 import Expo, { Audio, Font } from "expo";
 
 export default class Main extends Component {
@@ -26,8 +25,6 @@ export default class Main extends Component {
   }
 
   state = {
-    currentSong: {},
-    playList: [],
     index: null,
     playbackInstance: null,
     playbackInstancePosition: null,
@@ -36,20 +33,6 @@ export default class Main extends Component {
     isLoading: false,
     showPlayer: false,
     expanded: false
-  };
-
-  fetchPlayList = async url => {
-    const songs = await fetchSongs(url);
-
-    this.setState({ playList: songs, showPlayer: true, expanded: true });
-  };
-
-  handlePressAlbum = url => {
-    this.fetchPlayList(url);
-  };
-
-  handlePressSong = song => {
-    this.loadNewInstance(song);
   };
 
   loadNewInstance = song => {

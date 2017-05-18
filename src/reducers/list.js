@@ -26,13 +26,3 @@ export function fetchReady(state = false, action) {
       return state;
   }
 }
-
-export function setSong(state = {}, action) {
-  switch (action.type) {
-    case "CHANGE_PLAYING_SONG":
-      return action.song;
-      break;
-    default:
-      return state;
-  }
-}

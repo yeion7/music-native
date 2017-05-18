@@ -6,7 +6,7 @@ import { Content } from "native-base";
 
 import PlaceHolder from "../components/PlaceHolder";
 import ResultsList from "../components/ResultsList";
-import { onPressSong, onPressAlbum } from "../actions/list";
+import { onPressSong, fecthAlbum } from "../actions/player";
 
 import { connect } from "react-redux";
 
@@ -30,5 +30,5 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   handlePress: onPressSong,
-  handlePressAlbum: onPressAlbum
+  handlePressAlbum: fecthAlbum
 })(ResultListContainer);
