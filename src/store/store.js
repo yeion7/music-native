@@ -8,7 +8,7 @@ import logger from "redux-logger";
 const store = createStore(
   rootReducer,
   undefined,
-  applyMiddleware(createDebounce(), thunk, logger)
+  applyMiddleware(createDebounce(), thunk)
 );
 
 export default store;

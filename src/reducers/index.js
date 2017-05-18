@@ -8,7 +8,10 @@ import {
   changeExpand,
   setPlayback,
   setIndex,
-  loadSong
+  loadSong,
+  setPosition,
+  setDuration,
+  setPlaying
 } from "./player";
 
 const list = combineReducers({
@@ -23,7 +26,10 @@ const player = combineReducers({
   expanded: changeExpand,
   playbackInstance: setPlayback,
   index: setIndex,
-  isLoading: loadSong
+  isLoading: loadSong,
+  position: setPosition,
+  duration: setDuration,
+  isPlaying: setPlaying
 });
 
 const rootReducer = combineReducers({

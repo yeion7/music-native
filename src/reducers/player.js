@@ -48,9 +48,39 @@ export function setIndex(state = null, action) {
   }
 }
 
-export function loadSong(state = false, action) {
+export function loadSong(state = true, action) {
   switch (action.type) {
     case "LOADING_PLAYBACK_SONG":
+      return action.value;
+      break;
+    default:
+      return state;
+  }
+}
+
+export function setDuration(state = null, action) {
+  switch (action.type) {
+    case "SET_PLAYBACK_DURATION":
+      return action.time;
+      break;
+    default:
+      return state;
+  }
+}
+
+export function setPosition(state = null, action) {
+  switch (action.type) {
+    case "UPDATE_PLAYBACK_POSITION":
+      return action.time;
+      break;
+    default:
+      return state;
+  }
+}
+
+export function setPlaying(state = false, action) {
+  switch (action.type) {
+    case "CHANGE_STATE_SONG":
       return action.value;
       break;
     default:

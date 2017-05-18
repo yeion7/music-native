@@ -32,8 +32,8 @@ const mapStateToProps = state => ({
   isLoading: state.player.isLoading,
   isPlaying: false,
   currentSong: state.player.currentSong,
-  playbackInstancePosition: 10000,
-  playbackInstanceDuration: 10000,
+  playbackInstancePosition: state.player.position,
+  playbackInstanceDuration: state.player.duration,
   expanded: state.player.expanded,
   playList: state.player.playList,
   index: state.player.index

@@ -36,8 +36,23 @@ export const setPlayback = songInstance => ({
   playback: songInstance
 });
 
-export const loadSong = value => ({
+export const isLoadingSong = value => ({
   type: "LOADING_PLAYBACK_SONG",
+  value
+});
+
+export const setPosition = time => ({
+  type: "UPDATE_PLAYBACK_POSITION",
+  time
+});
+
+export const setDuration = time => ({
+  type: "SET_PLAYBACK_DURATION",
+  time
+});
+
+export const setPlaying = value => ({
+  type: "CHANGE_STATE_SONG",
   value
 });
 
@@ -54,15 +69,47 @@ export function playSong(song) {
   return async (dispatch, getState) => {
     if (song.preview_url !== null) {
       const sound = new Audio.Sound({ source: song.preview_url });
-      sound.loadAsync();
+      sound.setCallback(status => {
+        dispatch(setPosition(status.positionMillis));
+        dispatch(setPlaying(status.isPlaying));
+        if (status.isPlaying) {
+          dispatch(isLoadingSong(false));
+        }
+
+        if (status.isLoaded && !status.positionMillis) {
+          sound.playAsync();
+        }
+      });
+
+      sound.setCallbackPollingMillis(1000);
+
+      sound.loadAsync().then(status => {
+        dispatch(setDuration(status.durationMillis));
+      });
 
       dispatch(setPlayback(sound));
       dispatch(onPressSong(song));
       dispatch(setIndex(song.track_number));
-      dispatch(loadSong(true));
+      dispatch(isLoadingSong(true));
       dispatch(showPlayer(true));
     } else {
       error("Canción sin URL");
     }
   };
 }
+
+// if (status.didJustFinish && this.state.index) {
+//   this.handleForward();
+// }
+//
+// if (status.didJustFinish && !this.state.index) {
+//   this.setState({ showPlayer: false });
+// }
+//
+// if (status.isLoaded && !status.positionMillis) {
+//   this.state.playbackInstance.playAsync();
+// }
+//
+// if (status.isPlaying) {
+//   this.setState({ isLoading: false });
+// }
