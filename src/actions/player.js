@@ -79,14 +79,14 @@ export function playSong(song) {
     if (song.preview_url !== null) {
       const sound = new Audio.Sound({ source: song.preview_url });
       sound.setCallback(status => {
-        dispatch(setPosition(status.positionMillis));
-        dispatch(setPlaying(status.isPlaying));
         if (status.isPlaying) {
-          dispatch(isLoadingSong(false));
+          dispatch(setPosition(status.positionMillis));
         }
 
         if (status.isLoaded && !status.positionMillis) {
           sound.playAsync();
+          dispatch(setPlaying(true));
+          dispatch(isLoadingSong(false));
         }
       });
 
@@ -103,6 +103,22 @@ export function playSong(song) {
       dispatch(showPlayer(true));
     } else {
       error("Canción sin URL");
+    }
+  };
+}
+
+export function handlePlayPause() {
+  return async (dispatch, getState) => {
+    const { player: { isPlaying, playbackInstance } } = getState();
+
+    if (playbackInstance != null) {
+      if (isPlaying) {
+        playbackInstance.pauseAsync();
+        dispatch(setPlaying(!isPlaying));
+      } else {
+        playbackInstance.playAsync();
+        dispatch(setPlaying(!isPlaying));
+      }
     }
   };
 }
