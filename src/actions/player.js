@@ -67,6 +67,15 @@ export function fecthAlbum(url) {
 
 export function playSong(song) {
   return async (dispatch, getState) => {
+    const { player: { playbackInstance } } = getState();
+
+    if (playbackInstance !== null) {
+      playbackInstance.unloadAsync();
+      playbackInstance.setCallback(null);
+
+      dispatch(setPlayback(null));
+    }
+
     if (song.preview_url !== null) {
       const sound = new Audio.Sound({ source: song.preview_url });
       sound.setCallback(status => {
