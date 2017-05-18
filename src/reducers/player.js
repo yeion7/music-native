@@ -48,7 +48,7 @@ export function setIndex(state = null, action) {
   }
 }
 
-export function loadSong(state = true, action) {
+export function loadSong(state = false, action) {
   switch (action.type) {
     case "LOADING_PLAYBACK_SONG":
       return action.value;

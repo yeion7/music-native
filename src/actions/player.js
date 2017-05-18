@@ -62,12 +62,47 @@ export function fecthAlbum(url) {
 
     dispatch(onPressAlbum(songs));
     dispatch(showPlayer(true));
+    dispatch(expandPlayer(true));
+  };
+}
+
+export function handlePlayPause() {
+  return async (dispatch, getState) => {
+    const { player: { isPlaying, playbackInstance } } = getState();
+
+    if (playbackInstance != null) {
+      if (isPlaying) {
+        playbackInstance.pauseAsync();
+        dispatch(setPlaying(!isPlaying));
+      } else {
+        playbackInstance.playAsync();
+        dispatch(setPlaying(!isPlaying));
+      }
+    }
+  };
+}
+
+export function handleForward() {
+  return async (dispatch, getState) => {
+    const { player: { index, playList } } = getState();
+
+    newIndex = index >= playList.length ? 0 : index;
+    dispatch(playSong(playList[newIndex]));
+  };
+}
+
+export function handleBack() {
+  return async (dispatch, getState) => {
+    const { player: { index, playList } } = getState();
+
+    newIndex = index == 1 ? playList.length - 1 : index - 2;
+    dispatch(playSong(playList[newIndex]));
   };
 }
 
 export function playSong(song) {
   return async (dispatch, getState) => {
-    const { player: { playbackInstance } } = getState();
+    const { player: { playbackInstance, index } } = getState();
 
     if (playbackInstance !== null) {
       playbackInstance.unloadAsync();
@@ -88,6 +123,14 @@ export function playSong(song) {
           dispatch(setPlaying(true));
           dispatch(isLoadingSong(false));
         }
+
+        if (status.didJustFinish && index) {
+          dispatch(handleForward());
+        }
+
+        if (status.didJustFinish && !index) {
+          dispatch(showPlayer(false));
+        }
       });
 
       sound.setCallbackPollingMillis(1000);
@@ -106,35 +149,3 @@ export function playSong(song) {
     }
   };
 }
-
-export function handlePlayPause() {
-  return async (dispatch, getState) => {
-    const { player: { isPlaying, playbackInstance } } = getState();
-
-    if (playbackInstance != null) {
-      if (isPlaying) {
-        playbackInstance.pauseAsync();
-        dispatch(setPlaying(!isPlaying));
-      } else {
-        playbackInstance.playAsync();
-        dispatch(setPlaying(!isPlaying));
-      }
-    }
-  };
-}
-
-// if (status.didJustFinish && this.state.index) {
-//   this.handleForward();
-// }
-//
-// if (status.didJustFinish && !this.state.index) {
-//   this.setState({ showPlayer: false });
-// }
-//
-// if (status.isLoaded && !status.positionMillis) {
-//   this.state.playbackInstance.playAsync();
-// }
-//
-// if (status.isPlaying) {
-//   this.setState({ isLoading: false });
-// }
