@@ -18,6 +18,16 @@ export function setAlbum(state = [], action) {
   }
 }
 
+export function changeExpand(state = false, action) {
+  switch (action.type) {
+    case "CHANGE_EXPAND_PLAYER":
+      return !state;
+      break;
+    default:
+      return state;
+  }
+}
+
 export function showPlayer(state = false, action) {
   switch (action.type) {
     case "CHANGE_PLAYER_STATUS":

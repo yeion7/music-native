@@ -6,6 +6,8 @@ import Player from "../components/Player";
 import { connect } from "react-redux";
 import { View } from "react-native";
 
+import { expandPlayer } from "../actions/player";
+
 class PlayerContainer extends Component {
   render() {
     const { showPlayer } = this.props;
@@ -32,7 +34,7 @@ const mapStateToProps = state => ({
   currentSong: state.player.currentSong,
   playbackInstancePosition: 10000,
   playbackInstanceDuration: 10000,
-  expanded: false,
+  expanded: state.player.expanded,
   playList: state.player.playList,
   index: null
 });
@@ -41,6 +43,6 @@ export default connect(mapStateToProps, {
   onPlayPause: "",
   onNext: "",
   onBack: "",
-  onExpand: "",
+  onExpand: expandPlayer,
   onPressSong: ""
 })(PlayerContainer);

@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import { search } from "./search";
 import { buildList, fetchReady } from "./list";
-import { setSong, setAlbum, showPlayer } from "./player";
+import { setSong, setAlbum, showPlayer, changeExpand } from "./player";
 
 const list = combineReducers({
   items: buildList,
@@ -11,7 +11,8 @@ const list = combineReducers({
 const player = combineReducers({
   currentSong: setSong,
   playList: setAlbum,
-  showPlayer: showPlayer
+  showPlayer: showPlayer,
+  expanded: changeExpand
 });
 
 const rootReducer = combineReducers({

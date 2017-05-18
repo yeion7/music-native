@@ -33,7 +33,7 @@ const Player = ({
     }}
   >
     {playList.length > 0
-      ? <Button full black onPress={onExpand}>
+      ? <Button full black onPress={() => onExpand(expanded)}>
           {expanded ? <Icon name="arrow-down" /> : <Icon name="arrow-up" />}
         </Button>
       : null}

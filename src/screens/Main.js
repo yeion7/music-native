@@ -24,17 +24,6 @@ export default class Main extends Component {
     });
   }
 
-  state = {
-    index: null,
-    playbackInstance: null,
-    playbackInstancePosition: null,
-    playbackInstanceDuration: null,
-    isPlaying: true,
-    isLoading: false,
-    showPlayer: false,
-    expanded: false
-  };
-
   loadNewInstance = song => {
     const { playbackInstance } = this.state;
     if (playbackInstance !== null) {

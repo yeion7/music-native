@@ -19,6 +19,11 @@ export const onPressAlbum = album => ({
   album
 });
 
+export const expandPlayer = value => ({
+  type: "CHANGE_EXPAND_PLAYER",
+  value
+});
+
 export function fecthAlbum(url) {
   return async (dispatch, getState) => {
     const songs = await fetchSongs(url);
