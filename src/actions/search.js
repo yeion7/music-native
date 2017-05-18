@@ -11,8 +11,8 @@ export function fecthList(text) {
     dispatch(changeSearch(text));
 
     const data = await fetchItems(text);
-    dispatch(fetchReady(true));
     dispatch(reciveItems(data));
+    dispatch(fetchReady(true));
   };
 
   thunk.meta = {

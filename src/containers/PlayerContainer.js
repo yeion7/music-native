@@ -19,15 +19,7 @@ class PlayerContainer extends Component {
     const { showPlayer } = this.props;
     return (
       <View>
-        {showPlayer &&
-          <Player
-            onPlayPause={this.handlePlayPause}
-            onNext={this.handleForward}
-            onBack={this.handleBack}
-            onExpand={this.handleExpand}
-            onPressSong={this.handlePressSong}
-            {...this.props}
-          />}
+        {showPlayer && <Player {...this.props} />}
       </View>
     );
   }

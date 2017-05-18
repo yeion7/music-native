@@ -1,7 +1,6 @@
 /* @flow */
 
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
 import { Content } from "native-base";
 
 import PlaceHolder from "../components/PlaceHolder";
