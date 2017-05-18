@@ -1,5 +1,6 @@
 import { fetchSongs } from "../utils/api";
 import Expo, { Audio } from "expo";
+import { error } from "../utils/error";
 
 export const onPressSong = song => {
   return {
@@ -46,11 +47,15 @@ export function fecthAlbum(url) {
 
 export function playSong(song) {
   return async (dispatch, getState) => {
-    const sound = new Audio.Sound({ source: song.preview_url });
+    if (song.preview_url !== null) {
+      const sound = new Audio.Sound({ source: song.preview_url });
 
-    dispatch(setPlayback(sound));
-    dispatch(onPressSong(song));
-    dispatch(setIndex(song.track_number));
-    dispatch(showPlayer(true));
+      dispatch(setPlayback(sound));
+      dispatch(onPressSong(song));
+      dispatch(setIndex(song.track_number));
+      dispatch(showPlayer(true));
+    } else {
+      error("Canción sin URL");
+    }
   };
 }

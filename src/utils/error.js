@@ -4,6 +4,6 @@ export const error = msg => {
   Toast.show({
     text: msg,
     position: "center",
-    duration: 1000
+    duration: 300
   });
 };
