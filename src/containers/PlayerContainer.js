@@ -29,7 +29,7 @@ class PlayerContainer extends Component {
 
 const mapStateToProps = state => ({
   showPlayer: state.player.showPlayer,
-  isLoading: false,
+  isLoading: state.player.isLoading,
   isPlaying: false,
   currentSong: state.player.currentSong,
   playbackInstancePosition: 10000,

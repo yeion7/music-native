@@ -36,6 +36,11 @@ export const setPlayback = songInstance => ({
   playback: songInstance
 });
 
+export const loadSong = value => ({
+  type: "LOADING_PLAYBACK_SONG",
+  value
+});
+
 export function fecthAlbum(url) {
   return async (dispatch, getState) => {
     const songs = await fetchSongs(url);
@@ -49,10 +54,12 @@ export function playSong(song) {
   return async (dispatch, getState) => {
     if (song.preview_url !== null) {
       const sound = new Audio.Sound({ source: song.preview_url });
+      sound.loadAsync();
 
       dispatch(setPlayback(sound));
       dispatch(onPressSong(song));
       dispatch(setIndex(song.track_number));
+      dispatch(loadSong(true));
       dispatch(showPlayer(true));
     } else {
       error("Canción sin URL");

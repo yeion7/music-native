@@ -48,6 +48,16 @@ export function setIndex(state = null, action) {
   }
 }
 
+export function loadSong(state = false, action) {
+  switch (action.type) {
+    case "LOADING_PLAYBACK_SONG":
+      return action.value;
+      break;
+    default:
+      return state;
+  }
+}
+
 export function setPlayback(state = null, action) {
   switch (action.type) {
     case "SET_PLAYBACK_SONG":
