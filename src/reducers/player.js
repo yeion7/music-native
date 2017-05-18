@@ -38,6 +38,16 @@ export function showPlayer(state = false, action) {
   }
 }
 
+export function setIndex(state = null, action) {
+  switch (action.type) {
+    case "SET_INDEX_SONG":
+      return action.index;
+      break;
+    default:
+      return state;
+  }
+}
+
 export function setPlayback(state = null, action) {
   switch (action.type) {
     case "SET_PLAYBACK_SONG":

@@ -25,6 +25,11 @@ export const expandPlayer = value => ({
   value
 });
 
+export const setIndex = index => ({
+  type: "SET_INDEX_SONG",
+  index
+});
+
 export const setPlayback = songInstance => ({
   type: "SET_PLAYBACK_SONG",
   playback: songInstance
@@ -45,6 +50,7 @@ export function playSong(song) {
 
     dispatch(setPlayback(sound));
     dispatch(onPressSong(song));
+    dispatch(setIndex(song.track_number));
     dispatch(showPlayer(true));
   };
 }
