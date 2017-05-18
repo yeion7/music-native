@@ -67,7 +67,7 @@ export function fecthAlbum(url) {
 }
 
 export function handlePlayPause() {
-  return async (dispatch, getState) => {
+  return (dispatch, getState) => {
     const { player: { isPlaying, playbackInstance } } = getState();
 
     if (playbackInstance != null) {
@@ -83,7 +83,7 @@ export function handlePlayPause() {
 }
 
 export function handleForward() {
-  return async (dispatch, getState) => {
+  return (dispatch, getState) => {
     const { player: { index, playList } } = getState();
 
     newIndex = index >= playList.length ? 0 : index;
@@ -92,7 +92,7 @@ export function handleForward() {
 }
 
 export function handleBack() {
-  return async (dispatch, getState) => {
+  return (dispatch, getState) => {
     const { player: { index, playList } } = getState();
 
     newIndex = index == 1 ? playList.length - 1 : index - 2;
@@ -102,7 +102,7 @@ export function handleBack() {
 
 export function playSong(song) {
   return async (dispatch, getState) => {
-    const { player: { playbackInstance, index } } = getState();
+    const { player: { playbackInstance } } = getState();
 
     if (playbackInstance !== null) {
       playbackInstance.unloadAsync();
@@ -124,12 +124,12 @@ export function playSong(song) {
           dispatch(isLoadingSong(false));
         }
 
-        if (status.didJustFinish && index) {
-          dispatch(handleForward());
+        if (status.didJustFinish && !song.track_number) {
+          dispatch(showPlayer(false));
         }
 
-        if (status.didJustFinish && !index) {
-          dispatch(showPlayer(false));
+        if (status.didJustFinish && song.track_number) {
+          dispatch(handleForward());
         }
       });
 
