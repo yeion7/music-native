@@ -37,3 +37,13 @@ export function showPlayer(state = false, action) {
       return state;
   }
 }
+
+export function setPlayback(state = null, action) {
+  switch (action.type) {
+    case "SET_PLAYBACK_SONG":
+      return action.playback;
+      break;
+    default:
+      return state;
+  }
+}

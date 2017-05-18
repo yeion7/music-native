@@ -1,4 +1,5 @@
 import { fetchSongs } from "../utils/api";
+import Expo, { Audio } from "expo";
 
 export const onPressSong = song => {
   return {
@@ -24,6 +25,11 @@ export const expandPlayer = value => ({
   value
 });
 
+export const setPlayback = songInstance => ({
+  type: "SET_PLAYBACK_SONG",
+  playback: songInstance
+});
+
 export function fecthAlbum(url) {
   return async (dispatch, getState) => {
     const songs = await fetchSongs(url);
@@ -35,6 +41,9 @@ export function fecthAlbum(url) {
 
 export function playSong(song) {
   return async (dispatch, getState) => {
+    const sound = new Audio.Sound({ source: song.preview_url });
+
+    dispatch(setPlayback(sound));
     dispatch(onPressSong(song));
     dispatch(showPlayer(true));
   };
