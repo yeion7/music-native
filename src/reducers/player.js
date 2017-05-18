@@ -17,3 +17,13 @@ export function setAlbum(state = [], action) {
       return state;
   }
 }
+
+export function showPlayer(state = false, action) {
+  switch (action.type) {
+    case "CHANGE_PLAYER_STATUS":
+      return action.value;
+      break;
+    default:
+      return state;
+  }
+}

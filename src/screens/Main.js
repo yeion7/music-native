@@ -7,7 +7,7 @@ import { Container } from "native-base";
 
 import ResultsListContainer from "../containers/ResultsListContainer";
 import SearcherContainer from "../containers/SearcherContainer";
-import Player from "../components/Player";
+import PlayerContainer from "../containers/PlayerContainer";
 
 import { error } from "../utils/error";
 import Expo, { Audio, Font } from "expo";
@@ -119,23 +119,13 @@ export default class Main extends Component {
   };
 
   render() {
-    const { tracks, text, albums, showPlayer } = this.state;
-
     return (
       <Container>
         <SearcherContainer />
 
         <ResultsListContainer />
 
-        {showPlayer &&
-          <Player
-            onPlayPause={this.handlePlayPause}
-            onNext={this.handleForward}
-            onBack={this.handleBack}
-            onExpand={this.handleExpand}
-            onPressSong={this.handlePressSong}
-            {...this.state}
-          />}
+        <PlayerContainer />
 
       </Container>
     );

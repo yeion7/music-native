@@ -7,6 +7,13 @@ export const onPressSong = song => {
   };
 };
 
+export const showPlayer = value => {
+  return {
+    type: "CHANGE_PLAYER_STATUS",
+    value
+  };
+};
+
 export const onPressAlbum = album => ({
   type: "CHANGE_SELECTED_PLAYLISTS",
   album
@@ -17,5 +24,13 @@ export function fecthAlbum(url) {
     const songs = await fetchSongs(url);
 
     dispatch(onPressAlbum(songs));
+    dispatch(showPlayer(true));
+  };
+}
+
+export function playSong(song) {
+  return async (dispatch, getState) => {
+    dispatch(onPressSong(song));
+    dispatch(showPlayer(true));
   };
 }
