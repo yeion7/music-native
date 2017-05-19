@@ -16,7 +16,6 @@ const Player = ({
   onNext,
   onBack,
   onExpand,
-  onPressSong,
   isLoading,
   isPlaying,
   currentSong,
@@ -54,7 +53,7 @@ const Player = ({
       song={currentSong}
     />
 
-    {expanded && <PlayList playList={playList} onPressSong={onPressSong} />}
+    {expanded && <PlayList playList={playList} />}
   </Container>
 );
 

@@ -8,7 +8,6 @@ import { View } from "react-native";
 
 import {
   expandPlayer,
-  playSong,
   handlePlayPause,
   handleForward,
   handleBack
@@ -41,6 +40,5 @@ export default connect(mapStateToProps, {
   onPlayPause: handlePlayPause,
   onNext: handleForward,
   onBack: handleBack,
-  onExpand: expandPlayer,
-  onPressSong: playSong
+  onExpand: expandPlayer
 })(PlayerContainer);

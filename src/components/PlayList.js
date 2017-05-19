@@ -2,28 +2,18 @@
 
 import React from "react";
 import { View, Dimensions } from "react-native";
-import { Text, List, ListItem, Left, Right } from "native-base";
+import { List } from "native-base";
 
 import styled from "styled-components/native";
-import { formattedTime } from "../utils/time";
+import ItemContainer from "../containers/ItemContainer";
 
 const { width, height } = Dimensions.get("window");
 
-const PlayList = ({ playList, onPressSong }) => (
+const RenderItem = song => <ItemContainer {...song} key={song.id} />;
+
+const PlayList = ({ playList }) => (
   <Wrapper>
-    <List
-      dataArray={playList}
-      renderRow={song => (
-        <ListItem key={song.id} onPress={() => onPressSong(song)}>
-          <Left>
-            <Text>{song.name}</Text>
-          </Left>
-          <Right>
-            <Text>{formattedTime(song.duration_ms)}</Text>
-          </Right>
-        </ListItem>
-      )}
-    />
+    <List dataArray={playList} renderRow={RenderItem} />
   </Wrapper>
 );
 
