@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders test  render Seacher component 1`] = `
+<View>
+  <View
+    rounded={true}
+    searchBar={true}
+    style={
+      Object {
+        "backgroundColor": "#F8F8F8",
+        "borderBottomColor": "#a7a6ab",
+        "borderBottomWidth": 0.5,
+        "elevation": 3,
+        "flexDirection": "row",
+        "height": 64,
+        "justifyContent": "center",
+        "left": 0,
+        "paddingLeft": 10,
+        "paddingRight": 10,
+        "paddingTop": 15,
+        "right": 0,
+        "shadowColor": undefined,
+        "shadowOffset": undefined,
+        "shadowOpacity": undefined,
+        "shadowRadius": undefined,
+        "top": 0,
+      }
+    }
+    virtual={undefined}
+  >
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "alignSelf": "center",
+          "backgroundColor": "#CECDD2",
+          "borderBottomWidth": 1,
+          "borderColor": "transparent",
+          "borderLeftWidth": 0,
+          "borderRadius": 25,
+          "borderRightWidth": 0,
+          "borderTopWidth": 0,
+          "flex": 1,
+          "flexDirection": "row",
+          "height": 30,
+          "justifyContent": "flex-start",
+          "marginLeft": 2,
+          "opacity": 1,
+        }
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      />
+      <TextInput
+        autoCorrect={false}
+        editable={true}
+        onChangeText={[Function]}
+        placeholder="Search"
+        placeholderTextColor="#575757"
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#000",
+            "flex": 1,
+            "fontSize": 17,
+            "height": 30,
+            "lineHeight": 24,
+            "paddingLeft": 5,
+            "paddingRight": 5,
+            "top": 1.5,
+          }
+        }
+        underlineColorAndroid="rgba(0,0,0,0)"
+        virtual={undefined}
+      />
+    </View>
+  </View>
+</View>
+`;
