@@ -1,5 +1,6 @@
 import React from "react";
 import "react-native";
+const myMock = jest.fn();
 
 import PlayList from "./PlayList";
 
@@ -17,7 +18,7 @@ describe("renders test ", () => {
               duration_ms: "188706"
             }
           ]}
-          onPressSong={jest.fn}
+          onPressSong={myMock}
         />
       )
       .toJSON();

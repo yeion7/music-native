@@ -1,5 +1,6 @@
 import React from "react";
 import "react-native";
+const myMock = jest.fn();
 
 import ResultsList from "./ResultsList";
 
@@ -41,68 +42,6 @@ describe("renders test ", () => {
                     type: "artist",
                     uri: "spotify:artist:57kIMCLPgkzQlXjblX7XXP"
                   }
-                ],
-                available_markets: [
-                  "AD",
-                  "AR",
-                  "AT",
-                  "AU",
-                  "BE",
-                  "BG",
-                  "BO",
-                  "BR",
-                  "CA",
-                  "CH",
-                  "CL",
-                  "CO",
-                  "CR",
-                  "CY",
-                  "CZ",
-                  "DE",
-                  "DK",
-                  "DO",
-                  "EC",
-                  "EE",
-                  "ES",
-                  "FI",
-                  "FR",
-                  "GB",
-                  "GR",
-                  "GT",
-                  "HK",
-                  "HN",
-                  "HU",
-                  "ID",
-                  "IE",
-                  "IS",
-                  "IT",
-                  "JP",
-                  "LI",
-                  "LT",
-                  "LU",
-                  "LV",
-                  "MC",
-                  "MT",
-                  "MX",
-                  "MY",
-                  "NI",
-                  "NL",
-                  "NO",
-                  "NZ",
-                  "PA",
-                  "PE",
-                  "PH",
-                  "PL",
-                  "PT",
-                  "PY",
-                  "SE",
-                  "SG",
-                  "SK",
-                  "SV",
-                  "TR",
-                  "TW",
-                  "US",
-                  "UY"
                 ],
                 external_urls: {
                   spotify: "https://open.spotify.com/album/0TticAuqNj26EhgT2Em3qD"
@@ -152,8 +91,8 @@ describe("renders test ", () => {
               type: "album"
             }
           ]}
-          handlePress={jest.fn}
-          handlePressAlbum={jest.jn}
+          handlePress={myMock}
+          handlePressAlbum={myMock}
         />
       )
       .toJSON();

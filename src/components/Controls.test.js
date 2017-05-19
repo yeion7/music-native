@@ -1,5 +1,6 @@
 import React from "react";
 import "react-native";
+const myMock = jest.fn();
 
 import Controls from "./Controls";
 
@@ -10,9 +11,9 @@ describe("renders test ", () => {
     const tree = renderer
       .create(
         <Controls
-          onBack={jest.fn}
-          onPlayPause={jest.fn}
-          onNext={jest.fn}
+          onBack={myMock}
+          onPlayPause={myMock}
+          onNext={myMock}
           isPlaying={false}
           index={1}
         />
@@ -25,9 +26,9 @@ describe("renders test ", () => {
     const tree = renderer
       .create(
         <Controls
-          onBack={jest.fn}
-          onPlayPause={jest.fn}
-          onNext={jest.fn}
+          onBack={myMock}
+          onPlayPause={myMock}
+          onNext={myMock}
           isPlaying={true}
           index={1}
         />
@@ -40,9 +41,9 @@ describe("renders test ", () => {
     const tree = renderer
       .create(
         <Controls
-          onBack={jest.fn}
-          onPlayPause={jest.fn}
-          onNext={jest.fn}
+          onBack={myMock}
+          onPlayPause={myMock}
+          onNext={myMock}
           isPlaying={false}
           index={null}
         />
@@ -55,9 +56,9 @@ describe("renders test ", () => {
     const tree = renderer
       .create(
         <Controls
-          onBack={jest.fn}
-          onPlayPause={jest.fn}
-          onNext={jest.fn}
+          onBack={myMock}
+          onPlayPause={myMock}
+          onNext={myMock}
           isPlaying={true}
           index={null}
         />

@@ -1,5 +1,6 @@
 import React from "react";
 import "react-native";
+const myMock = jest.fn();
 
 import SongItem from "./SongItem";
 
@@ -13,7 +14,7 @@ describe("renders test ", () => {
           id="53Dj5PCDhb22qWqmre3YQs"
           name="Aw Naw"
           duration_ms="188706"
-          handlePress={jest.fn()}
+          handlePress={myMock}
           artists={[
             {
               href: "https://api.spotify.com/v1/artists/4BYxqVkZyFjtik7crYLg5Q",

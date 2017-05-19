@@ -1,5 +1,6 @@
 import React from "react";
 import "react-native";
+const myMock = jest.fn();
 
 import Player from "./Player";
 
@@ -10,11 +11,11 @@ describe("renders test ", () => {
     const tree = renderer
       .create(
         <Player
-          onPlayPause={jest.fn}
-          onNext={jest.fn}
-          onBack={jest.fn}
-          onExpand={jest.fn}
-          onPressSong={jest.fn}
+          onPlayPause={myMock}
+          onNext={myMock}
+          onBack={myMock}
+          onExpand={myMock}
+          onPressSong={myMock}
           isLoading={false}
           isPlaying={false}
           currentSong={{
@@ -151,11 +152,11 @@ describe("renders test ", () => {
     const tree = renderer
       .create(
         <Player
-          onPlayPause={jest.fn}
-          onNext={jest.fn}
-          onBack={jest.fn}
-          onExpand={jest.fn}
-          onPressSong={jest.fn}
+          onPlayPause={myMock}
+          onNext={myMock}
+          onBack={myMock}
+          onExpand={myMock}
+          onPressSong={myMock}
           isLoading={false}
           isPlaying={false}
           currentSong={{
@@ -292,11 +293,11 @@ describe("renders test ", () => {
     const tree = renderer
       .create(
         <Player
-          onPlayPause={jest.fn}
-          onNext={jest.fn}
-          onBack={jest.fn}
-          onExpand={jest.fn}
-          onPressSong={jest.fn}
+          onPlayPause={myMock}
+          onNext={myMock}
+          onBack={myMock}
+          onExpand={myMock}
+          onPressSong={myMock}
           isLoading={false}
           isPlaying={false}
           currentSong={{

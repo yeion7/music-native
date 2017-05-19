@@ -1,5 +1,6 @@
 import React from "react";
 import "react-native";
+const myMock = jest.fn();
 
 import AlbumItem from "./AlbumItem";
 
@@ -22,7 +23,7 @@ describe("renders test ", () => {
             type: "artist",
             uri: "spotify:artist:57kIMCLPgkzQlXjblX7XXP"
           }}
-          handlePress={jest.fn}
+          handlePress={myMock}
         />
       )
       .toJSON();
