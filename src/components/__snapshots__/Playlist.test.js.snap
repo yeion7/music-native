@@ -1,0 +1,160 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders test  render PlayList component 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "height": 667,
+        "width": 375,
+      },
+      undefined,
+    ]
+  }
+>
+  <ScrollView
+    dataArray={
+      Array [
+        Object {
+          "duration_ms": "188706",
+          "id": "53Dj5PCDhb22qWqmre3YQs",
+          "name": "Aw Naw",
+        },
+      ]
+    }
+    dataSource={
+      ListViewDataSource {
+        "items": 1,
+      }
+    }
+    enableEmptySections={true}
+    initialListSize={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={1000}
+    onKeyboardDidHide={undefined}
+    onKeyboardDidShow={undefined}
+    onKeyboardWillHide={undefined}
+    onKeyboardWillShow={undefined}
+    onLayout={[Function]}
+    onScroll={[Function]}
+    pageSize={1}
+    removeClippedSubviews={true}
+    renderRow={[Function]}
+    scrollEventThrottle={50}
+    scrollRenderAheadDistance={1000}
+    stickyHeaderIndices={Array []}
+    stickySectionHeadersEnabled={true}
+    style={Object {}}
+    virtual={undefined}
+  >
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          undefined,
+        ]
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <View
+        onPress={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": undefined,
+            "borderBottomWidth": 0.5,
+            "borderColor": "#c9c9c9",
+            "flexDirection": "row",
+            "marginLeft": 15,
+            "paddingBottom": 13,
+            "paddingRight": 15,
+            "paddingTop": 13,
+          }
+        }
+        virtual={undefined}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "alignSelf": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+          virtual={undefined}
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "alignSelf": "center",
+                "color": "#000",
+                "fontFamily": "System",
+                "fontSize": 16,
+                "marginLeft": 10,
+              }
+            }
+            virtual={undefined}
+          >
+            Aw Naw
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "flex-end",
+              "alignSelf": "center",
+              "flex": 0.28,
+              "paddingBottom": null,
+              "paddingLeft": null,
+              "paddingRight": null,
+              "paddingTop": null,
+            }
+          }
+          virtual={undefined}
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "alignSelf": null,
+                "color": "#000",
+                "fontFamily": "System",
+                "fontSize": 16,
+              }
+            }
+            virtual={undefined}
+          >
+            3:08
+          </Text>
+        </View>
+      </View>
+    </View>
+  </ScrollView>
+</View>
+`;
