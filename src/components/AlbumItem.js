@@ -21,9 +21,9 @@ const AlbumItem = ({
   artists,
   url_songs,
   type,
-  handlePress
+  handlePressAlbum
 }) => (
-  <ListItem onPress={() => handlePress(url_songs)}>
+  <ListItem onPress={handlePressAlbum}>
     <Thumbnail square size={80} source={{ uri: image }} />
     <Body>
       <Text>{name}</Text>

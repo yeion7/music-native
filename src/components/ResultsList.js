@@ -4,28 +4,22 @@ import React, { Component } from "react";
 import { View, StyleSheet } from "react-native";
 import { List } from "native-base";
 
-import SongItem from "./SongItem";
-import AlbumItem from "./AlbumItem";
+import SongItemContainer from "../containers/SongItemContainer";
+import AlbumItemContainer from "../containers/AlbumItemContainer";
 
 import styled from "styled-components/native";
 import { error } from "../utils/error";
 
-const ResultsList = ({ tracks, albums, handlePress, handlePressAlbum }) => (
+renderSongItem = info => <SongItemContainer key={info.id} {...info} />;
+
+renderAlbumItem = info => <AlbumItemContainer key={info.id} {...info} />;
+
+const ResultsList = ({ tracks, albums }) => (
   <View>
     <Separator>Canciones</Separator>
-    <List
-      dataArray={tracks}
-      renderRow={info => (
-        <SongItem key={info.id} {...info} handlePress={handlePress} />
-      )}
-    />
+    <List dataArray={tracks} renderRow={renderSongItem} />
     <Separator>Álbumes</Separator>
-    <List
-      dataArray={albums}
-      renderRow={info => (
-        <AlbumItem key={info.id} {...info} handlePress={handlePressAlbum} />
-      )}
-    />
+    <List dataArray={albums} renderRow={renderAlbumItem} />
   </View>
 );
 

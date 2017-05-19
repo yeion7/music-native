@@ -5,7 +5,6 @@ import { Content } from "native-base";
 
 import PlaceHolder from "../components/PlaceHolder";
 import ResultsList from "../components/ResultsList";
-import { playSong, fecthAlbum } from "../actions/player";
 
 import { connect } from "react-redux";
 
@@ -27,7 +26,4 @@ const mapStateToProps = state => ({
   text: state.search
 });
 
-export default connect(mapStateToProps, {
-  handlePress: playSong,
-  handlePressAlbum: fecthAlbum
-})(ResultListContainer);
+export default connect(mapStateToProps)(ResultListContainer);

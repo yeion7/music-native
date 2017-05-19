@@ -21,21 +21,21 @@ const SongItem = ({
   artists,
   album,
   preview_url,
-  handlePress
-}) => (
-  <ListItem
-    onPress={() => handlePress({ id, name, preview_url, track_number: null })}
-  >
-    <Thumbnail square size={80} source={{ uri: album.images[2].url }} />
-    <Body>
-      <Text>{name}</Text>
-      <Text note>{artists[0].name || "---"}</Text>
-      <Text note>{formattedTime(duration_ms)}</Text>
-    </Body>
-    <Right>
-      <Icon name="md-play" />
-    </Right>
-  </ListItem>
-);
+  onPressSong
+}) => {
+  return (
+    <ListItem onPress={onPressSong}>
+      <Thumbnail square size={80} source={{ uri: album.images[2].url }} />
+      <Body>
+        <Text>{name}</Text>
+        <Text note>{artists[0].name || "---"}</Text>
+        <Text note>{formattedTime(duration_ms)}</Text>
+      </Body>
+      <Right>
+        <Icon name="md-play" />
+      </Right>
+    </ListItem>
+  );
+};
 
 export default SongItem;
