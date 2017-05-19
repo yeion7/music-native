@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders test  render AlbumItem component 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  hasTVPreferredFocus={undefined}
+  hitSlop={undefined}
+  isTVSelectable={true}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "transparent",
+      },
+      undefined,
+    ]
+  }
+  testID={undefined}
+  tvParallaxProperties={undefined}
+>
+  <View
+    onPress={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": undefined,
+        "borderBottomWidth": 0.5,
+        "borderColor": "#c9c9c9",
+        "flexDirection": "row",
+        "marginLeft": 15,
+        "paddingBottom": 13,
+        "paddingRight": 15,
+        "paddingTop": 13,
+      }
+    }
+    virtual={undefined}
+  >
+    <Image
+      size={80}
+      source={
+        Object {
+          "uri": "https://i.scdn.co/image/cc9f4c667dc6fa65839c121262a7e7ba5dd49547",
+        }
+      }
+      square={true}
+      style={
+        Object {
+          "borderRadius": 0,
+          "height": 56,
+          "width": 56,
+        }
+      }
+      virtual={undefined}
+    />
+    <View
+      style={
+        Object {
+          "alignItems": null,
+          "alignSelf": null,
+          "flex": 1,
+        }
+      }
+      virtual={undefined}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#000",
+            "fontFamily": "System",
+            "fontSize": 16,
+            "marginLeft": 10,
+            "marginRight": 10,
+          }
+        }
+        virtual={undefined}
+      >
+        Aw Come Aw Wry
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        note={true}
+        style={
+          Object {
+            "color": "#808080",
+            "fontFamily": "System",
+            "fontSize": 14,
+            "fontWeight": "200",
+            "marginLeft": 10,
+            "marginRight": 10,
+          }
+        }
+        virtual={undefined}
+      >
+        Phosphorescent
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        note={true}
+        style={
+          Object {
+            "color": "#808080",
+            "fontFamily": "System",
+            "fontSize": 14,
+            "fontWeight": "200",
+            "marginLeft": 10,
+            "marginRight": 10,
+          }
+        }
+        virtual={undefined}
+      >
+        album
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "flex-end",
+          "alignSelf": "center",
+          "flex": 0.28,
+          "paddingBottom": null,
+          "paddingLeft": null,
+          "paddingRight": null,
+          "paddingTop": null,
+        }
+      }
+      virtual={undefined}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      />
+    </View>
+  </View>
+</View>
+`;

@@ -13,15 +13,20 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch"
+    "testw": "node node_modules/jest/bin/jest.js --watch",
+    "testc": "node node_modules/jest/bin/jest.js --coverage"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "/node_modules/(?!native-base)/"
+    ]
   },
   "dependencies": {
     "@expo/vector-icons": "^4.0.0",
     "expo": "^16.0.0",
     "native-base": "^2.1.3",
+    "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.6",
     "react-native": "^0.43.4",
     "react-redux": "^5.0.4",
