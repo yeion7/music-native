@@ -2,6 +2,10 @@
 
 This is a educative project, Platzi Music by [Platzi](https://platzi.com/)
 
+## view
+
+For view the app work, visit https://expo.io/@yeion7/platzi-music
+
 ## Available Scripts
 
 If Yarn was installed when the project was initialized, then dependencies will have been installed via Yarn, and you should probably use it to run these commands as well. Unlike dependency installation, command running syntax is identical for Yarn and NPM at the time of this writing.
