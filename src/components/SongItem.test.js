@@ -13,6 +13,7 @@ describe("renders test ", () => {
           id="53Dj5PCDhb22qWqmre3YQs"
           name="Aw Naw"
           duration_ms="188706"
+          handlePress={jest.fn()}
           artists={[
             {
               href: "https://api.spotify.com/v1/artists/4BYxqVkZyFjtik7crYLg5Q",
@@ -23,7 +24,6 @@ describe("renders test ", () => {
             }
           ]}
           preview_url="https://p.scdn.co/mp3-preview/e8fbbea2af7f94d66a16abe972a2b5a6d7840f5a?cid=null"
-          handlePress={jest.fn}
           album={{
             images: [
               {

@@ -13,7 +13,7 @@ describe("renders test ", () => {
           onBack={jest.fn}
           onPlayPause={jest.fn}
           onNext={jest.fn}
-          isPlaying="false"
+          isPlaying={false}
           index={1}
         />
       )
@@ -28,7 +28,7 @@ describe("renders test ", () => {
           onBack={jest.fn}
           onPlayPause={jest.fn}
           onNext={jest.fn}
-          isPlaying="true"
+          isPlaying={true}
           index={1}
         />
       )
@@ -43,7 +43,7 @@ describe("renders test ", () => {
           onBack={jest.fn}
           onPlayPause={jest.fn}
           onNext={jest.fn}
-          isPlaying="false"
+          isPlaying={false}
           index={null}
         />
       )
@@ -58,7 +58,7 @@ describe("renders test ", () => {
           onBack={jest.fn}
           onPlayPause={jest.fn}
           onNext={jest.fn}
-          isPlaying="true"
+          isPlaying={true}
           index={null}
         />
       )
