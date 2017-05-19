@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders test  render Info component 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+        "paddingBottom": 2,
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    numberOfLines={1}
+    style={
+      Object {
+        "color": "#000",
+        "fontFamily": "System",
+        "fontSize": 16,
+        "paddingHorizontal": 10,
+        "textAlign": "center",
+      }
+    }
+    virtual={undefined}
+  >
+    Aw Naw
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    note={true}
+    style={
+      Object {
+        "color": "#a7a7a7",
+        "fontFamily": "System",
+        "fontSize": 14,
+      }
+    }
+    virtual={undefined}
+  >
+    0:40
+     
+    /
+     
+    0:10
+  </Text>
+</View>
+`;
