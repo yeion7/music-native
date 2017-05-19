@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`search reducer test  handles CHANGE_EXPAND_PLAYER action 1`] = `true`;
+
+exports[`search reducer test  handles CHANGE_PLAYER_STATUS action 1`] = `false`;
+
+exports[`search reducer test  handles CHANGE_PLAYING_SONG action 1`] = `Object {}`;
+
+exports[`search reducer test  handles CHANGE_SELECTED_PLAYLISTS action 1`] = `Object {}`;
+
+exports[`search reducer test  handles CHANGE_STATE_SONG action 1`] = `true`;
+
+exports[`search reducer test  handles LOADING_PLAYBACK_SONG action 1`] = `true`;
+
+exports[`search reducer test  handles SET_INDEX_SONG action 1`] = `1`;
+
+exports[`search reducer test  handles SET_PLAYBACK_DURATION action 1`] = `1000`;
+
+exports[`search reducer test  handles SET_PLAYBACK_SONG action 1`] = `Object {}`;
+
+exports[`search reducer test  handles UPDATE_PLAYBACK_POSITION action 1`] = `1000`;

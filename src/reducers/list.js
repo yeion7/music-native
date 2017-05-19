@@ -11,7 +11,6 @@ export function buildList(
         tracks: action.payload.tracks,
         albums: action.payload.albums
       };
-      break;
     default:
       return state;
   }
@@ -21,7 +20,6 @@ export function fetchReady(state = false, action) {
   switch (action.type) {
     case "FETCH_READY":
       return action.value;
-      break;
     default:
       return state;
   }
