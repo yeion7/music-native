@@ -1,25 +1,23 @@
 import React from "react";
 import "react-native";
-const myMock = jest.fn();
+import renderer from "react-test-renderer";
+
+import { Mock } from "../../__mocks__/mock_function";
+import { playlist } from "../../__mocks__/mock_data";
+import { Provider } from "react-redux";
+import mockStore from "../../__mocks__/redux-mock-store";
 
 import PlayList from "./PlayList";
 
-import renderer from "react-test-renderer";
+const store = mockStore({});
 
 describe("renders test ", () => {
   it("render PlayList component", () => {
     const tree = renderer
       .create(
-        <PlayList
-          playList={[
-            {
-              id: "53Dj5PCDhb22qWqmre3YQs",
-              name: "Aw Naw",
-              duration_ms: "188706"
-            }
-          ]}
-          onPressSong={myMock}
-        />
+        <Provider store={store}>
+          <PlayList playList={playlist} onPressSong={Mock} />
+        </Provider>
       )
       .toJSON();
     expect(tree).toMatchSnapshot();

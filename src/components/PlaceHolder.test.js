@@ -1,9 +1,8 @@
 import React from "react";
 import "react-native";
+import renderer from "react-test-renderer";
 
 import PlaceHolder from "./PlaceHolder";
-
-import renderer from "react-test-renderer";
 
 describe("renders test ", () => {
   it("render PlaceHolder component", () => {

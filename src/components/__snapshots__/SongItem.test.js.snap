@@ -28,7 +28,7 @@ exports[`renders test  render SongItem component 1`] = `
   tvParallaxProperties={undefined}
 >
   <View
-    onPress={[Function]}
+    onPress={undefined}
     style={
       Object {
         "alignItems": "center",
@@ -48,7 +48,7 @@ exports[`renders test  render SongItem component 1`] = `
       size={80}
       source={
         Object {
-          "uri": "https://i.scdn.co/image/7a931513f592b019f3bbb6ae2b5b4427203f003e",
+          "uri": "https://i.scdn.co/image/1ea5645d08a452f50c9720aad99d4ea6e8cdd8b6",
         }
       }
       square={true}
@@ -86,7 +86,7 @@ exports[`renders test  render SongItem component 1`] = `
         }
         virtual={undefined}
       >
-        Aw Naw
+        Joe Tex, These Taming Blues
       </Text>
       <Text
         accessible={true}
@@ -105,7 +105,7 @@ exports[`renders test  render SongItem component 1`] = `
         }
         virtual={undefined}
       >
-        Chris Young
+        Phosphorescent
       </Text>
       <Text
         accessible={true}
@@ -124,7 +124,7 @@ exports[`renders test  render SongItem component 1`] = `
         }
         virtual={undefined}
       >
-        3:08
+        5:30
       </Text>
     </View>
     <View

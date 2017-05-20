@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders test  render AlbumItem component 1`] = `
+exports[`renders test  render Item component 1`] = `
 <View
   accessibilityComponentType={undefined}
   accessibilityLabel={undefined}
@@ -28,7 +28,7 @@ exports[`renders test  render AlbumItem component 1`] = `
   tvParallaxProperties={undefined}
 >
   <View
-    onPress={undefined}
+    onPress={[Function]}
     style={
       Object {
         "alignItems": "center",
@@ -44,29 +44,13 @@ exports[`renders test  render AlbumItem component 1`] = `
     }
     virtual={undefined}
   >
-    <Image
-      size={80}
-      source={
-        Object {
-          "uri": "https://i.scdn.co/image/172a34d390848ba1615374fa4f77c304de01a919",
-        }
-      }
-      square={true}
-      style={
-        Object {
-          "borderRadius": 0,
-          "height": 56,
-          "width": 56,
-        }
-      }
-      virtual={undefined}
-    />
     <View
       style={
         Object {
-          "alignItems": null,
-          "alignSelf": null,
+          "alignItems": "flex-start",
+          "alignSelf": "center",
           "flex": 1,
+          "flexDirection": "row",
         }
       }
       virtual={undefined}
@@ -77,54 +61,16 @@ exports[`renders test  render AlbumItem component 1`] = `
         ellipsizeMode="tail"
         style={
           Object {
+            "alignSelf": "center",
             "color": "#000",
             "fontFamily": "System",
             "fontSize": 16,
             "marginLeft": 10,
-            "marginRight": 10,
           }
         }
         virtual={undefined}
       >
-        Aw Man Oh Dear
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        note={true}
-        style={
-          Object {
-            "color": "#808080",
-            "fontFamily": "System",
-            "fontSize": 14,
-            "fontWeight": "200",
-            "marginLeft": 10,
-            "marginRight": 10,
-          }
-        }
-        virtual={undefined}
-      >
-        Aw Man Oh Dear
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        note={true}
-        style={
-          Object {
-            "color": "#808080",
-            "fontFamily": "System",
-            "fontSize": 14,
-            "fontWeight": "200",
-            "marginLeft": 10,
-            "marginRight": 10,
-          }
-        }
-        virtual={undefined}
-      >
-        album
+        Joe Tex, These Taming Blues
       </Text>
     </View>
     <View
@@ -145,7 +91,18 @@ exports[`renders test  render AlbumItem component 1`] = `
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
-      />
+        style={
+          Object {
+            "alignSelf": null,
+            "color": "#000",
+            "fontFamily": "System",
+            "fontSize": 16,
+          }
+        }
+        virtual={undefined}
+      >
+        5:30
+      </Text>
     </View>
   </View>
 </View>

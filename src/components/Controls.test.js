@@ -1,19 +1,19 @@
 import React from "react";
 import "react-native";
-const myMock = jest.fn();
+import renderer from "react-test-renderer";
+
+import { Mock } from "../../__mocks__/mock_function";
 
 import Controls from "./Controls";
-
-import renderer from "react-test-renderer";
 
 describe("renders test ", () => {
   it("render Controls component playing false and index", () => {
     const tree = renderer
       .create(
         <Controls
-          onBack={myMock}
-          onPlayPause={myMock}
-          onNext={myMock}
+          onBack={Mock}
+          onPlayPause={Mock}
+          onNext={Mock}
           isPlaying={false}
           index={1}
         />
@@ -26,9 +26,9 @@ describe("renders test ", () => {
     const tree = renderer
       .create(
         <Controls
-          onBack={myMock}
-          onPlayPause={myMock}
-          onNext={myMock}
+          onBack={Mock}
+          onPlayPause={Mock}
+          onNext={Mock}
           isPlaying={true}
           index={1}
         />
@@ -41,9 +41,9 @@ describe("renders test ", () => {
     const tree = renderer
       .create(
         <Controls
-          onBack={myMock}
-          onPlayPause={myMock}
-          onNext={myMock}
+          onBack={Mock}
+          onPlayPause={Mock}
+          onNext={Mock}
           isPlaying={false}
           index={null}
         />
@@ -56,9 +56,9 @@ describe("renders test ", () => {
     const tree = renderer
       .create(
         <Controls
-          onBack={myMock}
-          onPlayPause={myMock}
-          onNext={myMock}
+          onBack={Mock}
+          onPlayPause={Mock}
+          onNext={Mock}
           isPlaying={true}
           index={null}
         />
