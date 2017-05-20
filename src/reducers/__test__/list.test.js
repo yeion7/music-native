@@ -1,8 +1,8 @@
 import React from "react";
 import "react-native";
 
-import { buildList, fetchReady } from "./list";
-import { reciveItems, fetchReady as fetchAction } from "../actions/list";
+import { buildList, fetchReady } from "../list";
+import { reciveItems, fetchReady as fetchAction } from "../../actions/list";
 
 describe("list reducer test ", () => {
   it("returns the same state on an unhandled action", () => {

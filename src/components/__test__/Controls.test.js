@@ -2,9 +2,9 @@ import React from "react";
 import "react-native";
 import renderer from "react-test-renderer";
 
-import { Mock } from "../../__mocks__/mock_function";
+import { Mock } from "../../../__mocks__/mock_function";
 
-import Controls from "./Controls";
+import Controls from "../Controls";
 
 describe("renders test ", () => {
   it("render Controls component playing false and index", () => {

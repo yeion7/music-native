@@ -3,11 +3,11 @@ import "react-native";
 import renderer from "react-test-renderer";
 import { Provider } from "react-redux";
 
-import { Mock } from "../../__mocks__/mock_function";
-import mockStore from "../../__mocks__/redux-mock-store";
-import { albums, playlist } from "../../__mocks__/mock_data";
+import { Mock } from "../../../__mocks__/mock_function";
+import mockStore from "../../../__mocks__/redux-mock-store";
+import { albums, playlist } from "../../../__mocks__/mock_data";
 
-import ResultsList from "./ResultsList";
+import ResultsList from "../ResultsList";
 
 const store = mockStore({});
 

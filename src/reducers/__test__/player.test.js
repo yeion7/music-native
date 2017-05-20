@@ -12,7 +12,8 @@ import {
   setPosition,
   setPlaying,
   setPlayback
-} from "./player";
+} from "../player";
+
 import {
   onPressSong,
   showPlayer as onShowPlayer,
@@ -24,7 +25,7 @@ import {
   setPosition as onSetPosition,
   setDuration as onSetDuration,
   setPlaying as onSetPlaying
-} from "../actions/player";
+} from "../../actions/player";
 
 describe("search reducer test ", () => {
   it("handles CHANGE_PLAYING_SONG action", () => {

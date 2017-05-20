@@ -3,13 +3,13 @@ import "react-native";
 import renderer from "react-test-renderer";
 import { Provider } from "react-redux";
 
-import { Mock } from "../../__mocks__/mock_function";
-import { song, playlist } from "../../__mocks__/mock_data";
-import mockStore from "../../__mocks__/redux-mock-store";
+import { Mock } from "../../../__mocks__/mock_function";
+import { song, playlist } from "../../../__mocks__/mock_data";
+import mockStore from "../../../__mocks__/redux-mock-store";
 
 const store = mockStore({});
 
-import Player from "./Player";
+import Player from "../Player";
 
 describe("renders test ", () => {
   it("render Player component", () => {

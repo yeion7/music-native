@@ -2,7 +2,7 @@ import React from "react";
 import "react-native";
 import renderer from "react-test-renderer";
 
-import Info from "./Info";
+import Info from "../Info";
 
 describe("renders test ", () => {
   it("render Info component", () => {
