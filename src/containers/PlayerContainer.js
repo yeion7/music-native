@@ -13,7 +13,20 @@ import {
   handleBack
 } from "../actions/player";
 
+import Expo, { Audio } from "expo";
+
 class PlayerContainer extends Component {
+  async componentDidMount() {
+    await Audio.setIsEnabledAsync(true);
+    Audio.setAudioModeAsync({
+      allowsRecordingIOS: false,
+      interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+      playsInSilentLockedModeIOS: true,
+      shouldDuckAndroid: true,
+      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX
+    });
+  }
+
   render() {
     const { showPlayer } = this.props;
     return (
