@@ -1,15 +1,27 @@
 import React from "react";
 import "react-native";
 
-import { search } from "../search";
-import { changeSearch } from "../../actions/search";
+import { setItems } from "../search";
+import { onSetItems } from "../../actions/search";
 
 describe("search reducer test ", () => {
   it("returns the same state on an unhandled action", () => {
-    expect(search(null, { type: "_NULL_" })).toMatchSnapshot();
+    expect(setItems(null, { type: "_NULL_" })).toMatchSnapshot();
   });
 
   it("handles TYPING action", () => {
-    expect(search(null, changeSearch("La wa"))).toMatchSnapshot();
+    expect(
+      setItems(
+        null,
+        onSetItems({
+          text: "aw",
+          items: {
+            tracks: [],
+            albums: []
+          },
+          fetchReady: true
+        })
+      )
+    ).toMatchSnapshot();
   });
 });

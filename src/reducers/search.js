@@ -1,12 +1,17 @@
-export function search(
+export function setItems(
   state = {
-    text: ""
+    text: "",
+    items: {
+      tracks: [],
+      albums: []
+    },
+    fetchReady: false
   },
   action
 ) {
   switch (action.type) {
-    case "TYPING":
-      return action.text;
+    case "SET_ITEMS":
+      return { ...state, ...action.payload };
     default:
       return state;
   }

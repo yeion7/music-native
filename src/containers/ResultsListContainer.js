@@ -20,10 +20,10 @@ class ResultListContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  tracks: state.list.items.tracks,
-  albums: state.list.items.albums,
-  fetchReady: state.list.fetchReady,
-  text: state.search
+  tracks: state.search.items.tracks,
+  albums: state.search.items.albums,
+  fetchReady: state.search.fetchReady,
+  text: state.search.text
 });
 
 export default connect(mapStateToProps)(ResultListContainer);

@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`search reducer test  handles TYPING action 1`] = `"La wa"`;
+exports[`search reducer test  handles TYPING action 1`] = `
+Object {
+  "fetchReady": true,
+  "items": Object {
+    "albums": Array [],
+    "tracks": Array [],
+  },
+  "text": "aw",
+}
+`;
 
 exports[`search reducer test  returns the same state on an unhandled action 1`] = `null`;

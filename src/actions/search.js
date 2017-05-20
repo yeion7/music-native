@@ -1,24 +1,28 @@
 import { fetchItems } from "../utils/api";
-import { reciveItems, fetchReady } from "../actions/list";
 
-export const changeSearch = text => ({
-  type: "TYPING",
-  text
-});
+export const onSetItems = payload => {
+  return {
+    type: "SET_ITEMS",
+    payload
+  };
+};
 
 export function fecthList(text) {
   const thunk = async (dispatch, getState) => {
-    dispatch(changeSearch(text));
-
     const data = await fetchItems(text);
-    dispatch(reciveItems(data));
-    dispatch(fetchReady(true));
+    dispatch(
+      onSetItems({
+        text,
+        items: data,
+        fetchReady: true
+      })
+    );
   };
 
   thunk.meta = {
     debounce: {
       time: 300,
-      key: "RECIVE_ITEMS",
+      key: "SET_ITEMS",
       cancel: false
     }
   };
