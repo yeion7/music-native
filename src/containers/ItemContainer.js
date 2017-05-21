@@ -4,7 +4,7 @@ import React, { Component } from "react";
 
 import Item from "../components/Item";
 
-import { playSong } from "../actions/player";
+import { onSetSong } from "../actions/player";
 import { connect } from "react-redux";
 
 class ItemContainer extends Component {
@@ -15,7 +15,7 @@ class ItemContainer extends Component {
 
 const mapDispatch = (dispatch, props) => ({
   onPressSong() {
-    dispatch(playSong(props));
+    dispatch(onSetSong(props));
   }
 });
 

@@ -3,10 +3,19 @@
 import React from "react";
 import { View, Dimensions } from "react-native";
 import { Button, Icon, Spinner } from "native-base";
+import { connect } from "react-redux";
 
 import PlayList from "./PlayList";
 import Controls from "./Controls";
 import Info from "./Info";
+
+import {
+  expandPlayer,
+  handlePlayPause,
+  handleForward,
+  handleBack,
+  changePlayerStatus
+} from "../actions/player";
 
 const { width, height } = Dimensions.get("window");
 import styled from "styled-components/native";
@@ -18,43 +27,43 @@ const Player = ({
   onExpand,
   isLoading,
   isPlaying,
-  currentSong,
-  playbackInstancePosition,
-  playbackInstanceDuration,
-  expanded,
-  playList,
-  index
+  song,
+  position,
+  duration,
+  expand,
+  playlist,
+  index,
+  showPlayer
 }) => (
-  <Container
-    style={{
-      height: expanded ? height : height * 0.27,
-      justifyContent: expanded ? "flex-start" : "center"
-    }}
-  >
-    {playList.length > 0
-      ? <Button full black onPress={() => onExpand(expanded)}>
-          {expanded ? <Icon name="arrow-down" /> : <Icon name="arrow-up" />}
-        </Button>
-      : null}
+  <View>
+    {showPlayer &&
+      <Container
+        style={{
+          height: expand ? height : height * 0.27,
+          justifyContent: expand ? "flex-start" : "center"
+        }}
+      >
+        {playlist.length > 0
+          ? <Button full black onPress={onExpand}>
+              {expand ? <Icon name="arrow-down" /> : <Icon name="arrow-up" />}
+            </Button>
+          : null}
 
-    {isLoading
-      ? <Spinner color="black" />
-      : <Controls
-          onPlayPause={onPlayPause}
-          onNext={onNext}
-          onBack={onBack}
-          isPlaying={isPlaying}
-          index={index}
-        />}
+        {isLoading
+          ? <Spinner color="black" />
+          : <Controls
+              onPlayPause={onPlayPause}
+              onNext={onNext}
+              onBack={onBack}
+              isPlaying={isPlaying}
+              index={index}
+            />}
 
-    <Info
-      position={playbackInstancePosition}
-      duration={playbackInstanceDuration}
-      song={currentSong}
-    />
+        <Info position={position} duration={duration} song={song} />
 
-    {expanded && <PlayList playList={playList} />}
-  </Container>
+        {expand && <PlayList playList={playlist} />}
+      </Container>}
+  </View>
 );
 
 const Container = styled.View`
@@ -70,4 +79,22 @@ const Container = styled.View`
   flex: 1;
 `;
 
-export default Player;
+const mapStateToProps = ({
+  player: {
+    status: { showPlayer, isLoading, isPlaying, position, duration, expand },
+    song,
+    playlist
+  }
+}) => ({
+  showPlayer,
+  isLoading,
+  isPlaying,
+  song,
+  position,
+  duration,
+  expand,
+  playlist,
+  index: song.track_number
+});
+
+export default connect(mapStateToProps)(Player);

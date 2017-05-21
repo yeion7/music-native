@@ -2,7 +2,7 @@ import { fetchItems } from "../utils/api";
 
 export const onSetItems = payload => {
   return {
-    type: "SET_ITEMS",
+    type: "FETCH_ITEMS",
     payload
   };
 };
@@ -22,7 +22,7 @@ export function fecthList(text) {
   thunk.meta = {
     debounce: {
       time: 300,
-      key: "SET_ITEMS",
+      key: "FETCH_ITEMS",
       cancel: false
     }
   };

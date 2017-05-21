@@ -10,7 +10,7 @@ export function setItems(
   action
 ) {
   switch (action.type) {
-    case "SET_ITEMS":
+    case "FETCH_ITEMS":
       return { ...state, ...action.payload };
     default:
       return state;
