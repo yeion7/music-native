@@ -28,8 +28,7 @@ export function fecthAlbum(url) {
     dispatch(
       changePlayerStatus({
         showPlayer: true,
-        expand: true,
-        isPlaying: false
+        expand: true
       })
     );
   };
