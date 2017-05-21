@@ -27,8 +27,11 @@ class PlayerContainer extends Component {
     });
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.props.expand !== nextProps.expand) {
+  shouldComponentUpdate(nextProps) {
+    if (
+      this.props.expand !== nextProps.expand ||
+      this.props.playlist !== nextProps.playlist
+    ) {
       return false;
     }
     return true;
