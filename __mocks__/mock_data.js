@@ -1,3 +1,12 @@
+export const status = {
+  showPlayer: false,
+  expand: false,
+  isLoading: false,
+  isPlaying: false,
+  position: null,
+  duration: null
+};
+
 export const song = {
   id: "0dMDz3n9qLfRXBNlRhK5U7",
   name: "Joe Tex, These Taming Blues",

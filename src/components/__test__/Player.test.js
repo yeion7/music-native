@@ -4,10 +4,16 @@ import renderer from "react-test-renderer";
 import { Provider } from "react-redux";
 
 import { Mock } from "../../../__mocks__/mock_function";
-import { song, playlist } from "../../../__mocks__/mock_data";
+import { song, playlist, status } from "../../../__mocks__/mock_data";
 import mockStore from "../../../__mocks__/redux-mock-store";
 
-const store = mockStore({});
+const store = mockStore({
+  player: {
+    song,
+    playlist,
+    status
+  }
+});
 
 import Player from "../Player";
 
@@ -21,15 +27,6 @@ describe("renders test ", () => {
             onNext={Mock}
             onBack={Mock}
             onExpand={Mock}
-            onPressSong={Mock}
-            isLoading={false}
-            isPlaying={false}
-            currentSong={song}
-            playbackInstancePosition={10000}
-            playbackInstanceDuration={5000}
-            expanded={false}
-            playList={playlist}
-            index={1}
           />
         </Provider>
       )
@@ -47,15 +44,6 @@ describe("renders test ", () => {
             onNext={Mock}
             onBack={Mock}
             onExpand={Mock}
-            onPressSong={Mock}
-            isLoading={false}
-            isPlaying={false}
-            currentSong={song}
-            playbackInstancePosition={10000}
-            playbackInstanceDuration={5000}
-            expanded={true}
-            playList={playlist}
-            index={1}
           />
         </Provider>
       )
@@ -72,15 +60,6 @@ describe("renders test ", () => {
             onNext={Mock}
             onBack={Mock}
             onExpand={Mock}
-            onPressSong={Mock}
-            isLoading={false}
-            isPlaying={false}
-            currentSong={song}
-            playbackInstancePosition={10000}
-            playbackInstanceDuration={5000}
-            expanded={true}
-            playList={[]}
-            index={1}
           />
         </Provider>
       )
