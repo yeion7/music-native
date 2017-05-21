@@ -25,12 +25,16 @@ export function fecthAlbum(url) {
     const songs = await fetchSongs(url);
 
     dispatch(onSetPlayList(songs));
-    dispatch(
-      changePlayerStatus({
-        showPlayer: true,
-        expand: true,
-        isPlaying: false
-      })
-    );
+
+    if (songs[0].preview_url) {
+      dispatch(onSetSong(songs[0]));
+    } else {
+      dispatch(
+        changePlayerStatus({
+          showPlayer: true,
+          expand: true
+        })
+      );
+    }
   };
 }

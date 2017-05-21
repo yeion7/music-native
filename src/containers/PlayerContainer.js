@@ -27,7 +27,7 @@ class PlayerContainer extends Component {
     });
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps) {
     if (this.props.expand !== nextProps.expand) {
       return false;
     }
@@ -36,19 +36,16 @@ class PlayerContainer extends Component {
 
   componentWillUpdate(props) {
     const { preview_url } = props;
-
     if (this.playbackInstance) {
       this._unLoadInstance(preview_url);
-    } else if (preview_url) {
+    } else {
       this._LoadInstance(preview_url);
     }
   }
 
   _LoadInstance = async preview_url => {
     if (preview_url) {
-      this.playbackInstance = new Audio.Sound({
-        source: preview_url
-      });
+      this.playbackInstance = new Audio.Sound({ source: preview_url });
 
       this.props.changePlayerStatus({
         showPlayer: true,
@@ -57,29 +54,25 @@ class PlayerContainer extends Component {
         duration: null
       });
 
+      await this.playbackInstance.loadAsync();
+
       this.playbackInstance.setCallback(this._callbackSong);
       this.playbackInstance.setCallbackPollingMillis(1000);
 
-      try {
-        await this.playbackInstance.loadAsync();
-        const { durationMillis } = await this.playbackInstance.playAsync();
-        this.props.changePlayerStatus({
-          isLoading: false,
-          isPlaying: true,
-          duration: durationMillis
-        });
-      } catch (error) {
-        error("Error al reproducir la canción");
-      }
-    } else {
-      error("canción sin URL");
+      const { durationMillis } = await this.playbackInstance.playAsync();
+
+      this.props.changePlayerStatus({
+        isLoading: false,
+        isPlaying: true,
+        duration: durationMillis
+      });
     }
   };
 
   _unLoadInstance = preview_url => {
     this.playbackInstance.unloadAsync();
     this.playbackInstance.setCallback(null);
-    if (preview_url) this._LoadInstance(preview_url);
+    this._LoadInstance(preview_url);
   };
 
   _callbackSong = status => {
@@ -90,7 +83,6 @@ class PlayerContainer extends Component {
     }
 
     if (status.didJustFinish && !this.props.index) {
-      this._unLoadInstance();
       this.props.changePlayerStatus({
         showPlayer: false
       });
