@@ -5,6 +5,8 @@ import React, { Component } from "react";
 import Item from "../components/Item";
 
 import { onSetSong } from "../actions/player";
+import { error } from "../utils/error";
+
 import { connect } from "react-redux";
 
 class ItemContainer extends Component {
@@ -15,7 +17,11 @@ class ItemContainer extends Component {
 
 const mapDispatch = (dispatch, props) => ({
   onPressSong() {
-    dispatch(onSetSong(props));
+    if (props.preview_url) {
+      dispatch(onSetSong({ ...props, track_number: null }));
+    } else {
+      error("Canción sin URL");
+    }
   }
 });
 
