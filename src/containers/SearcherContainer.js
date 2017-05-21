@@ -12,8 +12,8 @@ class SearcherContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  text: state.search.text
+const mapStateToProps = ({ search: { text } }) => ({
+  text
 });
 
 export default connect(mapStateToProps, { onChange: fecthList })(

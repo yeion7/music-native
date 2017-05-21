@@ -19,11 +19,11 @@ class ResultListContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  tracks: state.search.items.tracks,
-  albums: state.search.items.albums,
-  fetchReady: state.search.fetchReady,
-  text: state.search.text
+const mapStateToProps = ({ search: { items, fetchReady, text } }) => ({
+  tracks: items.tracks,
+  albums: items.albums,
+  fetchReady,
+  text
 });
 
 export default connect(mapStateToProps)(ResultListContainer);

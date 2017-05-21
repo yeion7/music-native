@@ -27,8 +27,15 @@ class PlayerContainer extends Component {
     });
   }
 
-  componentDidUpdate() {
-    const { preview_url } = this.props;
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.expand !== nextProps.expand) {
+      return false;
+    }
+    return true;
+  }
+
+  componentWillUpdate(props) {
+    const { preview_url } = props;
 
     if (this.playbackInstance) {
       this._unLoadInstance(preview_url);
@@ -72,7 +79,7 @@ class PlayerContainer extends Component {
   _unLoadInstance = preview_url => {
     this.playbackInstance.unloadAsync();
     this.playbackInstance.setCallback(null);
-    this._LoadInstance(preview_url);
+    if (preview_url) this._LoadInstance(preview_url);
   };
 
   _callbackSong = status => {
@@ -82,18 +89,15 @@ class PlayerContainer extends Component {
       });
     }
 
-    if (status.didJustFinish && !this.props.playlist) {
-      console.log("termino sin index");
+    if (status.didJustFinish && !this.props.index) {
+      this._unLoadInstance();
       this.props.changePlayerStatus({
         showPlayer: false
       });
-      this._unLoadInstance();
     }
 
     if (status.didJustFinish && this.props.index) {
-      console.log("termino con index");
-
-      this._onBackward();
+      this._onForward();
     }
   };
 
@@ -144,11 +148,13 @@ class PlayerContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  preview_url: state.player.song.preview_url,
-  index: state.player.song.track_number || null,
-  playlist: state.player.playlist,
-  expand: state.player.status.expand
+const mapStateToProps = ({
+  player: { song, playlist, status: { expand } }
+}) => ({
+  preview_url: song.preview_url,
+  index: song.track_number,
+  playlist,
+  expand
 });
 
 export default connect(mapStateToProps, {

@@ -15,7 +15,7 @@ class SongItemContainer extends Component {
 
 const mapDispatch = (dispatch, props) => ({
   onPressSong() {
-    dispatch(onSetSong(props));
+    dispatch(onSetSong({ ...props, track_number: null }));
   }
 });
 export default connect(null, mapDispatch)(SongItemContainer);
