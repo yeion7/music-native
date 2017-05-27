@@ -1,10 +1,10 @@
-# Platzi-music-native
+# Music-native
 
-This is a educative project, Platzi Music by [Platzi](https://platzi.com/)
+This is a personal project for playing sound clips on iOS and Android.
 
 ## view
 
-For view the app work, visit https://expo.io/@yeion7/platzi-music
+For view the app work, visit https://expo.io/@yeion7/music-native
 
 ## Available Scripts
 
