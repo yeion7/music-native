@@ -6,6 +6,8 @@ This is a personal project for playing sound clips on iOS and Android.
 
 For view the app work, visit https://expo.io/@yeion7/music-native
 
+## Preview app
+
 ![app preview](./music-native.gif)
 
 ## Available Scripts
